@@ -8,6 +8,9 @@ namespace NBA.DAL
 		public NBAManagerDbContext(DbContextOptions<NBAManagerDbContext> options) : base(options) { }
 
 		public DbSet<Player> Players { get; set; }
+		public DbSet<Team> Teams { get; set; }
+		public DbSet<Position> Positions { get; set; }
+		public DbSet<Country> Countries { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

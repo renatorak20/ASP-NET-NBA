@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,14 @@ namespace NBA.Model
 		[StringLength(30, ErrorMessage = "Maximum length allowed is 30 characters")]
 		public string LastName { get; set; }
 		public DateTime? DateOfBirth { get; set; }
-		public string Nationality { get; set; }
+
+		[ForeignKey(nameof(Country))]
+		public int? CountryID { get; set; }
+		public Country? Country { get; set; }
+
+		[ForeignKey(nameof(Team))]
+		public int? TeamID { get; set; }
+		public Team? Team { get; set; }
 
 		public int? GetAge()
 		{

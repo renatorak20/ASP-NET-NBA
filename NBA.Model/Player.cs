@@ -14,13 +14,19 @@ namespace NBA.Model
 
 		[StringLength(30, ErrorMessage = "Maximum length allowed is 30 characters")]
 		public string LastName { get; set; }
-		public string Position { get; set; }
+
+		[ForeignKey(nameof(Position))]
+		public int? PositionID { get; set; }
+		public Position? Position { get; set; }
 		public DateTime? DateOfBirth { get; set; }
 
 		[ForeignKey(nameof(Country))]
 		public int? CountryID { get; set; }
 		public Country? Country { get; set; }
-		public string Team { get; set; }
+
+		[ForeignKey(nameof(Team))]
+		public int? TeamID { get; set; }
+		public Team? Team { get; set; }
 
 		public double Height { get; set; }
 		public double Weight { get; set; }
