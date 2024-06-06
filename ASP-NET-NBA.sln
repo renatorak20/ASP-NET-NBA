@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP-NET-NBA", "ASP-NET-NBA\ASP-NET-NBA.csproj", "{3DAE27C5-5499-4D8F-94D6-E4C8CF62C9BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3DAE27C5-5499-4D8F-94D6-E4C8CF62C9BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DAE27C5-5499-4D8F-94D6-E4C8CF62C9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DAE27C5-5499-4D8F-94D6-E4C8CF62C9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DAE27C5-5499-4D8F-94D6-E4C8CF62C9BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {074BF587-4E28-4ADA-BEA5-5EB31CDC5DA4}
+	EndGlobalSection
+EndGlobal
