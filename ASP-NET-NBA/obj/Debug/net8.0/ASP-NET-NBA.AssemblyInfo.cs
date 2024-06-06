@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ASP-NET-NBA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2cacce8732526081d6a9bc7a9e63b405518cb826")]
 [assembly: System.Reflection.AssemblyProductAttribute("ASP-NET-NBA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ASP-NET-NBA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

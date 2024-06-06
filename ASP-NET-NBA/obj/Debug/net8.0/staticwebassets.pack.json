@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\ASP-NET-NBA.bundle.scp.css",
-      "PackagePath": "staticwebassets\\ASP-NET-NBA.bundle.scp.css"
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\NBA.Web.bundle.scp.css",
+      "PackagePath": "staticwebassets\\NBA.Web.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\css\\site.css",
@@ -245,20 +245,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.ASP-NET-NBA.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.NBA.Web.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.ASP-NET-NBA.props",
-      "PackagePath": "build\\ASP-NET-NBA.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.NBA.Web.props",
+      "PackagePath": "build\\NBA.Web.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ASP-NET-NBA.props",
-      "PackagePath": "buildMultiTargeting\\ASP-NET-NBA.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.NBA.Web.props",
+      "PackagePath": "buildMultiTargeting\\NBA.Web.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.ASP-NET-NBA.props",
-      "PackagePath": "buildTransitive\\ASP-NET-NBA.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.NBA.Web.props",
+      "PackagePath": "buildTransitive\\NBA.Web.props"
     }
   ],
   "ElementsToRemove": []

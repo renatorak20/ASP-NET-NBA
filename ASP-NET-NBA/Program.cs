@@ -1,7 +1,17 @@
+using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
+using NBA.DAL;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<NBAManagerDbContext>(options =>
+	options.UseSqlServer(
+		builder.Configuration.GetConnectionString("NBAManagerDbContext"),
+			opt => opt.MigrationsAssembly("NBA.DAL")));
 
 var app = builder.Build();
 
