@@ -12,8 +12,8 @@ using NBA.DAL;
 namespace NBA.DAL.Migrations
 {
     [DbContext(typeof(NBAManagerDbContext))]
-    [Migration("20240606154315_Fix")]
-    partial class Fix
+    [Migration("20240606103830_PlayerWH")]
+    partial class PlayerWH
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,36 +58,7 @@ namespace NBA.DAL.Migrations
 
                     b.HasIndex("TeamID");
 
-                    b.ToTable("Coaches");
-                });
-
-            modelBuilder.Entity("NBA.Model.Conference", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Conferences");
-
-                    b.HasData(
-                        new
-                        {
-                            ID = 1,
-                            Name = "Eastern Conference"
-                        },
-                        new
-                        {
-                            ID = 2,
-                            Name = "Western Conference"
-                        });
+                    b.ToTable("Coach");
                 });
 
             modelBuilder.Entity("NBA.Model.Country", b =>
@@ -1150,7 +1121,7 @@ namespace NBA.DAL.Migrations
 
                     b.HasIndex("PlayerID");
 
-                    b.ToTable("PlayerAttachments");
+                    b.ToTable("PlayerAttachment");
                 });
 
             modelBuilder.Entity("NBA.Model.Position", b =>
@@ -1205,12 +1176,6 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CoachID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ConferenceID")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1220,10 +1185,6 @@ namespace NBA.DAL.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CoachID");
-
-                    b.HasIndex("ConferenceID");
-
                     b.HasIndex("VenueID");
 
                     b.ToTable("Teams");
@@ -1232,210 +1193,180 @@ namespace NBA.DAL.Migrations
                         new
                         {
                             ID = 1,
-                            ConferenceID = 1,
                             Name = "Atlanta Hawks",
                             VenueID = 1
                         },
                         new
                         {
                             ID = 2,
-                            ConferenceID = 1,
                             Name = "Boston Celtics",
                             VenueID = 2
                         },
                         new
                         {
                             ID = 3,
-                            ConferenceID = 1,
                             Name = "Brooklyn Nets",
                             VenueID = 3
                         },
                         new
                         {
                             ID = 4,
-                            ConferenceID = 1,
                             Name = "Charlotte Hornets",
                             VenueID = 4
                         },
                         new
                         {
                             ID = 5,
-                            ConferenceID = 1,
                             Name = "Chicago Bulls",
                             VenueID = 5
                         },
                         new
                         {
                             ID = 6,
-                            ConferenceID = 1,
                             Name = "Cleveland Cavaliers",
                             VenueID = 6
                         },
                         new
                         {
                             ID = 7,
-                            ConferenceID = 2,
                             Name = "Dallas Mavericks",
                             VenueID = 7
                         },
                         new
                         {
                             ID = 8,
-                            ConferenceID = 2,
                             Name = "Denver Nuggets",
                             VenueID = 8
                         },
                         new
                         {
                             ID = 9,
-                            ConferenceID = 1,
                             Name = "Detroit Pistons",
                             VenueID = 9
                         },
                         new
                         {
                             ID = 10,
-                            ConferenceID = 2,
                             Name = "Golden State Warriors",
                             VenueID = 10
                         },
                         new
                         {
                             ID = 11,
-                            ConferenceID = 2,
                             Name = "Houston Rockets",
                             VenueID = 11
                         },
                         new
                         {
                             ID = 12,
-                            ConferenceID = 1,
                             Name = "Indiana Pacers",
                             VenueID = 12
                         },
                         new
                         {
                             ID = 13,
-                            ConferenceID = 2,
                             Name = "Los Angeles Clippers",
                             VenueID = 13
                         },
                         new
                         {
                             ID = 14,
-                            ConferenceID = 2,
                             Name = "Los Angeles Lakers",
                             VenueID = 14
                         },
                         new
                         {
                             ID = 15,
-                            ConferenceID = 2,
                             Name = "Memphis Grizzlies",
                             VenueID = 15
                         },
                         new
                         {
                             ID = 16,
-                            ConferenceID = 1,
                             Name = "Miami Heat",
                             VenueID = 16
                         },
                         new
                         {
                             ID = 17,
-                            ConferenceID = 1,
                             Name = "Milwaukee Bucks",
                             VenueID = 17
                         },
                         new
                         {
                             ID = 18,
-                            ConferenceID = 2,
                             Name = "Minnesota Timberwolves",
                             VenueID = 18
                         },
                         new
                         {
                             ID = 19,
-                            ConferenceID = 2,
                             Name = "New Orleans Pelicans",
                             VenueID = 19
                         },
                         new
                         {
                             ID = 20,
-                            ConferenceID = 1,
                             Name = "New York Knicks",
                             VenueID = 20
                         },
                         new
                         {
                             ID = 21,
-                            ConferenceID = 2,
                             Name = "Oklahoma City Thunder",
                             VenueID = 21
                         },
                         new
                         {
                             ID = 22,
-                            ConferenceID = 1,
                             Name = "Orlando Magic",
                             VenueID = 22
                         },
                         new
                         {
                             ID = 23,
-                            ConferenceID = 1,
                             Name = "Philadelphia 76ers",
                             VenueID = 23
                         },
                         new
                         {
                             ID = 24,
-                            ConferenceID = 2,
                             Name = "Phoenix Suns",
                             VenueID = 24
                         },
                         new
                         {
                             ID = 25,
-                            ConferenceID = 2,
                             Name = "Portland Trail Blazers",
                             VenueID = 25
                         },
                         new
                         {
                             ID = 26,
-                            ConferenceID = 2,
                             Name = "Sacramento Kings",
                             VenueID = 26
                         },
                         new
                         {
                             ID = 27,
-                            ConferenceID = 2,
                             Name = "San Antonio Spurs",
                             VenueID = 27
                         },
                         new
                         {
                             ID = 28,
-                            ConferenceID = 1,
                             Name = "Toronto Raptors",
                             VenueID = 28
                         },
                         new
                         {
                             ID = 29,
-                            ConferenceID = 2,
                             Name = "Utah Jazz",
                             VenueID = 29
                         },
                         new
                         {
                             ID = 30,
-                            ConferenceID = 1,
                             Name = "Washington Wizards",
                             VenueID = 30
                         });
@@ -1651,7 +1582,7 @@ namespace NBA.DAL.Migrations
                         .HasForeignKey("CountryID");
 
                     b.HasOne("NBA.Model.Team", "Team")
-                        .WithMany()
+                        .WithMany("Coaches")
                         .HasForeignKey("TeamID");
 
                     b.Navigation("Country");
@@ -1693,21 +1624,9 @@ namespace NBA.DAL.Migrations
 
             modelBuilder.Entity("NBA.Model.Team", b =>
                 {
-                    b.HasOne("NBA.Model.Coach", "Coach")
-                        .WithMany()
-                        .HasForeignKey("CoachID");
-
-                    b.HasOne("NBA.Model.Conference", "Conference")
-                        .WithMany()
-                        .HasForeignKey("ConferenceID");
-
                     b.HasOne("NBA.Model.Venue", "Venue")
                         .WithMany("Teams")
                         .HasForeignKey("VenueID");
-
-                    b.Navigation("Coach");
-
-                    b.Navigation("Conference");
 
                     b.Navigation("Venue");
                 });
@@ -1731,6 +1650,8 @@ namespace NBA.DAL.Migrations
 
             modelBuilder.Entity("NBA.Model.Team", b =>
                 {
+                    b.Navigation("Coaches");
+
                     b.Navigation("Players");
                 });
 

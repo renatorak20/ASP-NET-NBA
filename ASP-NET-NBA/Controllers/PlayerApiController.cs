@@ -22,7 +22,8 @@ namespace ASP_NET_NBA.Controllers
 		{
 			List<PlayerDTO> players = _dbContext.Players
 				.Include(p => p.Team)
-				.Select(p => toPlayerDTO(p))
+                .Include(p => p.Position)
+                .Select(p => toPlayerDTO(p))
 				.ToList();
 
 			return Ok(players);
@@ -134,7 +135,7 @@ namespace ASP_NET_NBA.Controllers
 		public class PlayerDTO
 		{
 			public int ID { get; set; }
-			public string FirstName { get; set; }
+			public string FullName { get; set; }
 			public PositionDTO? Position { get; set; }
 			public TeamDTO? Team { get; set; }
 		}
@@ -156,7 +157,7 @@ namespace ASP_NET_NBA.Controllers
 			return new PlayerDTO()
 			{
 				ID = p.ID,
-				FirstName = p.FirstName,
+				FullName = p.FullName,
 				Position = new PositionDTO() { ID = p.Position.ID, Name = p.Position.Name },
 				Team = new TeamDTO() { ID = p.Team.ID, Name = p.Team.Name }
 			};
