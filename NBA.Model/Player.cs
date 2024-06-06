@@ -28,8 +28,8 @@ namespace NBA.Model
 		public int? TeamID { get; set; }
 		public Team? Team { get; set; }
 
-		public double Height { get; set; }
-		public double Weight { get; set; }
+		public int Height { get; set; }
+		public int Weight { get; set; }
 		public string FullName => $"{FirstName} {LastName}";
 		public virtual ICollection<PlayerAttachment>? Attachments { get; set; }
 
@@ -40,7 +40,6 @@ namespace NBA.Model
 
 			var today = DateTime.Today;
 			var age = today.Year - DateOfBirth.Value.Year;
-			if (DateOfBirth.Value.Date > today.AddYears(-age)) age--;
 			return age;
 		}
 	}

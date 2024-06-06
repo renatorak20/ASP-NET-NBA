@@ -1,0 +1,64 @@
+﻿@using NBA.Model
+@model Team
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+@if (Model != null)
+{
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a asp-action="Index">Team list</a></li>
+			<li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+		</ol>
+	</nav>
+
+	<div>
+		<h4>Team</h4>
+		<hr />
+		<dl class="dl-horizontal">
+			<dt>
+				ID
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.ID)
+			</dd>
+			<dt>
+				Full Name
+			</dt>
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+			<dt>
+				Conference
+			</dt>
+			<dd>
+				@Model?.Conference?.Name
+			</dd>
+			<dt>
+				Venue
+			</dt>
+			<dd>
+				@Model?.Venue?.Name
+			</dd>
+			<dt>
+				Coach
+			</dt>
+			<dd>
+				@Model?.Coach?.FullName
+			</dd>
+		</dl>
+	</div>
+
+}
+else
+{
+	<div class="alert alert-danger">
+		You've selected wrong player ID
+	</div>
+
+}
+

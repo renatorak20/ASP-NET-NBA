@@ -1,0 +1,27 @@
+﻿@model NBA.Model.Coach
+
+@{
+	ViewData["Title"] = "Editing Coach";
+}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a asp-action="Index">Coach list</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Editing coach</li>
+	</ol>
+</nav>
+
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<input type="hidden" asp-for="ID" />
+			<partial name="_CreateOrEdit" />
+		</form>
+	</div>
+	<div class="col-md-6">
+		<h5>Photo</h5>
+		<form id="photosUpload" asp-controller="Coach" asp-action="UploadAttachment"
+			  asp-route-playerId="@Model.ID"
+			  enctype="multipart/form-data" class="dropzone"></form>
+	</div>
+</div>

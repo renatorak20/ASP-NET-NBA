@@ -2,7 +2,38 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <div class="center">
+        <img src="images/nba-logo-transparent.png" alt="NBA Logo" class="nba-logo">
+    </div>
+    <div class="center">
+        <h1>Welcome to NBA Stats</h1>
+    </div>
+
+    <div class="center">
+        <h2>Your source for up-to-date NBA statistics</h2>
+    </div>
+
 </div>
+
+
+<section>
+    <h2>Teams</h2>
+    <p>Discover detailed statistics and data about all NBA teams.</p>
+    <a asp-controller ="Team" asp-action="Index">View Teams</a>
+</section>
+<section>
+    <h2>Players</h2>
+    <p>Check out player stats, career info, and more.</p>
+    <a asp-controller="Player" asp-action="Index">View Players</a>
+</section>
+<section>
+    <h2>Coaches</h2>
+    <p>Explore stats and records of NBA coaches.</p>
+    <a asp-controller="Coach" asp-action="Index">View Coaches</a>
+</section>
+<section>
+    <h2>Games</h2>
+    <p>Get the latest stats and scores from recent games.</p>
+    <a asp-controller="Game" asp-action="Index">View Games</a>
+</section>

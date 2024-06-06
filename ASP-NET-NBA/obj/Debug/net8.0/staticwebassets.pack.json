@@ -13,8 +13,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\images\\nba-logo-transparent.png",
+      "PackagePath": "staticwebassets\\images\\nba-logo-transparent.png"
+    },
+    {
       "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\lib\\Properties\\launchSettings.json",
+      "PackagePath": "staticwebassets\\lib\\Properties\\launchSettings.json"
     },
     {
       "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\lib\\bootstrap\\LICENSE",

@@ -1,0 +1,43 @@
+﻿@using NBA.Model
+@model List<Coach>
+
+@{
+	ViewData["Title"] = "Coach Home Page";
+}
+
+<h1>Coach list</h1>
+<div style="margin-top: 20px; margin-bottom: 10px;">
+	<partial name="_CoachFilter" model="new PlayerFilterModel()" />
+</div>
+
+<div class="row" id="tableContainer">
+	<partial name="_IndexTable" model="Model" />
+</div>
+
+
+@section scripts {
+	<script>
+		$(document).ready(function () {
+			performFilter();
+
+			$('#searchButton').on('click', function () {
+				performFilter();
+			});
+		});
+
+		function performFilter() {
+			var formData = $("#form").serialize();
+			$.ajax({
+				url: "@Url.Action("IndexAjax", new PlayerFilterModel())",
+				method: "POST",
+				data: formData,
+				success: function (html) {
+					$("#tablica").replaceWith(html);
+				},
+				error: function (xhr, status, error) {
+					console.error('Došlo je do greške: ', error);
+				}
+			});
+		}
+	</script>
+}

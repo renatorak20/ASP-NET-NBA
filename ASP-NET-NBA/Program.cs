@@ -4,6 +4,7 @@ using System.Globalization;
 using NBA.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
+var services = builder.Services;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -12,7 +13,7 @@ builder.Services.AddDbContext<NBAManagerDbContext>(options =>
 	options.UseSqlServer(
 		builder.Configuration.GetConnectionString("NBAManagerDbContext"),
 			opt => opt.MigrationsAssembly("NBA.DAL")));
-
+services.AddMvc();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -30,6 +31,23 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+var supportedCultures = new[]
+{
+	new CultureInfo("hr"), new CultureInfo("en-US")
+};
+
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+	DefaultRequestCulture = new RequestCulture("hr"),
+	SupportedCultures = supportedCultures,
+	SupportedUICultures = supportedCultures
+});
+app.UseEndpoints(endpoints =>
+{
+	endpoints.MapDefaultControllerRoute();
+	endpoints.MapRazorPages();
+});
+app.MapRazorPages();
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");

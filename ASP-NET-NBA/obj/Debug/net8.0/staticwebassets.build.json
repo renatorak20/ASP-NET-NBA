@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tLa6+ww/M921KqVukXqlirGjA3P8G5VRTQQwP58kpkQ=",
+  "Hash": "jCpX9KwK2PARoSQzLqIrg45Lm3JYoduj0HJz447tutw=",
   "Source": "NBA.Web",
   "BasePath": "_content/NBA.Web",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\images\\nba-logo-transparent.png",
+      "SourceId": "NBA.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\",
+      "BasePath": "_content/NBA.Web",
+      "RelativePath": "images/nba-logo-transparent.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\nba-logo-transparent.png"
     },
     {
       "Identity": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\js\\site.js",
@@ -1193,6 +1212,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\lib\\Properties\\launchSettings.json",
+      "SourceId": "NBA.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\",
+      "BasePath": "_content/NBA.Web",
+      "RelativePath": "lib/Properties/launchSettings.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\Properties\\launchSettings.json"
     }
   ]
 }

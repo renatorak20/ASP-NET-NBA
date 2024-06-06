@@ -27,15 +27,15 @@ namespace NBA.Model
 		[ForeignKey(nameof(Team))]
 		public int? TeamID { get; set; }
 		public Team? Team { get; set; }
+        public string FullName => $"{FirstName} {LastName}";
 
-		public int? GetAge()
+        public int? GetAge()
 		{
 			if (!DateOfBirth.HasValue)
 				return null;
 
 			var today = DateTime.Today;
 			var age = today.Year - DateOfBirth.Value.Year;
-			if (DateOfBirth.Value.Date > today.AddYears(-age)) age--;
 			return age;
 		}
 
