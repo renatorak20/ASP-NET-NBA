@@ -25,8 +25,16 @@ namespace NBA.Model
         public int? VenueID { get; set; }
         public Venue? Venue { get; set; }
 
+
+        [Required]
+        [Range(1, 1000, ErrorMessage = "Please enter a number between 1 and 1000")]
         public int HomeScore { get; set; }
+
+        [Required]
+        [Range(1, 1000, ErrorMessage = "Please enter a number between 1 and 1000")]
         public int AwayScore { get; set; }
-        public DateTime? DateOfGame { get; set; }
+
+        [Required(ErrorMessage = "Date of game is required")]
+        public DateTime DateOfGame { get; set; }
     }
 }

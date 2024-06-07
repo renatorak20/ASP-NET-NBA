@@ -12,8 +12,8 @@ using NBA.DAL;
 namespace NBA.DAL.Migrations
 {
     [DbContext(typeof(NBAManagerDbContext))]
-    [Migration("20240607155035_Google")]
-    partial class Google
+    [Migration("20240607190607_Migrations")]
+    partial class Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,10 +105,12 @@ namespace NBA.DAL.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -145,10 +147,12 @@ namespace NBA.DAL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -234,18 +238,16 @@ namespace NBA.DAL.Migrations
                     b.Property<int?>("CountryID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TeamID")
                         .HasColumnType("int");
@@ -1282,6 +1284,45 @@ namespace NBA.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("NBA.Model.Game", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AwayScore")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateOfGame")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HomeScore")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeamAwayID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeamHomeID")
+                        .IsRequired()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VenueID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TeamAwayID");
+
+                    b.HasIndex("TeamHomeID");
+
+                    b.HasIndex("VenueID");
+
+                    b.ToTable("Games");
+                });
+
             modelBuilder.Entity("NBA.Model.Player", b =>
                 {
                     b.Property<int>("ID")
@@ -1293,21 +1334,19 @@ namespace NBA.DAL.Migrations
                     b.Property<int?>("CountryID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PositionID")
                         .HasColumnType("int");
@@ -2085,6 +2124,31 @@ namespace NBA.DAL.Migrations
                     b.Navigation("Country");
 
                     b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("NBA.Model.Game", b =>
+                {
+                    b.HasOne("NBA.Model.Team", "TeamAway")
+                        .WithMany()
+                        .HasForeignKey("TeamAwayID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NBA.Model.Team", "TeamHome")
+                        .WithMany()
+                        .HasForeignKey("TeamHomeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NBA.Model.Venue", "Venue")
+                        .WithMany()
+                        .HasForeignKey("VenueID");
+
+                    b.Navigation("TeamAway");
+
+                    b.Navigation("TeamHome");
+
+                    b.Navigation("Venue");
                 });
 
             modelBuilder.Entity("NBA.Model.Player", b =>

@@ -235,18 +235,16 @@ namespace NBA.DAL.Migrations
                     b.Property<int?>("CountryID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TeamID")
                         .HasColumnType("int");
@@ -1294,6 +1292,9 @@ namespace NBA.DAL.Migrations
                     b.Property<int>("AwayScore")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateOfGame")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("HomeScore")
                         .HasColumnType("int");
 
@@ -1328,21 +1329,19 @@ namespace NBA.DAL.Migrations
                     b.Property<int?>("CountryID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("DateOfBirth")
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Height")
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PositionID")
                         .HasColumnType("int");

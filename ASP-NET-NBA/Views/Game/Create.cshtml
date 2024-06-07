@@ -18,3 +18,33 @@
 		</form>
 	</div>
 </div>
+
+<script>
+    var homeTeamSelect = document.querySelector('.home-team-select');
+    var awayTeamSelect = document.querySelector('.away-team-select');
+    var venueSelect = document.querySelector('#VenueID');
+
+    homeTeamSelect.addEventListener('change', function () {
+        if (this.value === awayTeamSelect.value) {
+            awayTeamSelect.value = '';
+        }
+    });
+
+    awayTeamSelect.addEventListener('change', function () {
+        if (this.value === homeTeamSelect.value) {
+            homeTeamSelect.value = '';
+        }
+    });
+
+    function selectRandomOption(selectElement) {
+        var options = selectElement.options;
+        var randomIndex = Math.floor(Math.random() * options.length);
+        selectElement.selectedIndex = randomIndex;
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+        selectRandomOption(homeTeamSelect);
+        selectRandomOption(awayTeamSelect);
+        selectRandomOption(venueSelect);
+    });
+</script>

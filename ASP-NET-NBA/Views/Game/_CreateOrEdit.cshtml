@@ -11,7 +11,7 @@
         <div class="team">
             <label class="control-label home-label">Home Team</label>
             <div>
-                <select asp-for="TeamHomeID" asp-items="ViewBag.PossibleTeams" class="form-control home-team-select"></select>
+                <select asp-for="TeamHomeID" asp-items="ViewBag.PossibleTeams" class="form-control home-team-select" id="home-team-select"></select>
                 <span asp-validation-for="TeamHomeID" class="text-danger"></span>
             </div>
             <div>
@@ -23,7 +23,7 @@
         <div class="team">
             <label class="control-label away-label">Away Team</label>
             <div>
-                <select asp-for="TeamAwayID" asp-items="ViewBag.PossibleTeams" class="form-control away-team-select"></select>
+                <select asp-for="TeamAwayID" asp-items="ViewBag.PossibleTeams" class="form-control away-team-select" id="away-team-select"></select>
                 <span asp-validation-for="TeamAwayID" class="text-danger"></span>
             </div>
             <div>
@@ -76,19 +76,7 @@
 
 </style>
 
-<script>
-    var homeTeamSelect = document.querySelector('.home-team-select');
-    var awayTeamSelect = document.querySelector('.away-team-select');
 
-    homeTeamSelect.addEventListener('change', function () {
-        if (this.value === awayTeamSelect.value) {
-            awayTeamSelect.value = '';
-        }
-    });
 
-    awayTeamSelect.addEventListener('change', function () {
-        if (this.value === homeTeamSelect.value) {
-            homeTeamSelect.value = '';
-        }
-    });
-</script>
+
+

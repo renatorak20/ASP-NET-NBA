@@ -12,8 +12,8 @@ using NBA.DAL;
 namespace NBA.DAL.Migrations
 {
     [DbContext(typeof(NBAManagerDbContext))]
-    [Migration("20240607135121_Initial")]
-    partial class Initial
+    [Migration("20240607183220_Something")]
+    partial class Something
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,208 @@ namespace NBA.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("NBA.Model.AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
 
             modelBuilder.Entity("NBA.Model.Coach", b =>
                 {
@@ -1084,6 +1286,43 @@ namespace NBA.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("NBA.Model.Game", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AwayScore")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DateOfGame")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("HomeScore")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeamAwayID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeamHomeID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("VenueID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("TeamAwayID");
+
+                    b.HasIndex("TeamHomeID");
+
+                    b.HasIndex("VenueID");
+
+                    b.ToTable("Games");
+                });
+
             modelBuilder.Entity("NBA.Model.Player", b =>
                 {
                     b.Property<int>("ID")
@@ -1129,6 +1368,152 @@ namespace NBA.DAL.Migrations
                     b.HasIndex("TeamID");
 
                     b.ToTable("Players");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1963, 2, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Michael",
+                            Height = 198,
+                            LastName = "Jordan",
+                            PositionID = 2,
+                            TeamID = 5,
+                            Weight = 98
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1965, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Scottie",
+                            Height = 203,
+                            LastName = "Pippen",
+                            PositionID = 3,
+                            TeamID = 5,
+                            Weight = 102
+                        },
+                        new
+                        {
+                            ID = 7,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1988, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Derrick",
+                            Height = 190,
+                            LastName = "Rose",
+                            PositionID = 1,
+                            TeamID = 5,
+                            Weight = 89
+                        },
+                        new
+                        {
+                            ID = 8,
+                            CountryID = 101,
+                            DateOfBirth = new DateTime(1971, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Artūras",
+                            Height = 203,
+                            LastName = "Karnišovas",
+                            PositionID = 4,
+                            TeamID = 5,
+                            Weight = 108
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CountryID = 158,
+                            DateOfBirth = new DateTime(1999, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Luka",
+                            Height = 201,
+                            LastName = "Dončić",
+                            PositionID = 1,
+                            TeamID = 7,
+                            Weight = 109
+                        },
+                        new
+                        {
+                            ID = 9,
+                            CountryID = 64,
+                            DateOfBirth = new DateTime(1978, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Dirk",
+                            Height = 213,
+                            LastName = "Nowitzki",
+                            PositionID = 4,
+                            TeamID = 7,
+                            Weight = 111
+                        },
+                        new
+                        {
+                            ID = 4,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1978, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Kobe",
+                            Height = 198,
+                            LastName = "Bryant",
+                            PositionID = 2,
+                            TeamID = 14,
+                            Weight = 96
+                        },
+                        new
+                        {
+                            ID = 5,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1984, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "LeBron",
+                            Height = 206,
+                            LastName = "James",
+                            PositionID = 3,
+                            TeamID = 14,
+                            Weight = 113
+                        },
+                        new
+                        {
+                            ID = 12,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1959, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Magic",
+                            Height = 206,
+                            LastName = "Johnson",
+                            PositionID = 1,
+                            TeamID = 14,
+                            Weight = 100
+                        },
+                        new
+                        {
+                            ID = 13,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1972, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Shaquille",
+                            Height = 216,
+                            LastName = "O'Neal",
+                            PositionID = 5,
+                            TeamID = 14,
+                            Weight = 147
+                        },
+                        new
+                        {
+                            ID = 33,
+                            CountryID = 153,
+                            DateOfBirth = new DateTime(1995, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Nikola",
+                            Height = 208,
+                            LastName = "Jokic",
+                            PositionID = 5,
+                            TeamID = 8,
+                            Weight = 113
+                        },
+                        new
+                        {
+                            ID = 34,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1984, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Carmelo",
+                            Height = 203,
+                            LastName = "Anthony",
+                            PositionID = 3,
+                            TeamID = 8,
+                            Weight = 109
+                        });
                 });
 
             modelBuilder.Entity("NBA.Model.PlayerAttachment", b =>
@@ -1677,6 +2062,57 @@ namespace NBA.DAL.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("NBA.Model.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("NBA.Model.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NBA.Model.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("NBA.Model.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("NBA.Model.Coach", b =>
                 {
                     b.HasOne("NBA.Model.Country", "Country")
@@ -1690,6 +2126,27 @@ namespace NBA.DAL.Migrations
                     b.Navigation("Country");
 
                     b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("NBA.Model.Game", b =>
+                {
+                    b.HasOne("NBA.Model.Team", "TeamAway")
+                        .WithMany()
+                        .HasForeignKey("TeamAwayID");
+
+                    b.HasOne("NBA.Model.Team", "TeamHome")
+                        .WithMany()
+                        .HasForeignKey("TeamHomeID");
+
+                    b.HasOne("NBA.Model.Venue", "Venue")
+                        .WithMany()
+                        .HasForeignKey("VenueID");
+
+                    b.Navigation("TeamAway");
+
+                    b.Navigation("TeamHome");
+
+                    b.Navigation("Venue");
                 });
 
             modelBuilder.Entity("NBA.Model.Player", b =>

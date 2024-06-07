@@ -9,16 +9,20 @@ namespace NBA.Model
 		[Key]
 		public int ID { get; set; }
 
-		[StringLength(30, ErrorMessage = "Maximum length allowed is 30 characters")]
-		public string FirstName { get; set; }
+        [Required]
+        [MinLength(3, ErrorMessage = "Enter at least 3 characters")]
+        public string FirstName { get; set; }
 
-		[StringLength(30, ErrorMessage = "Maximum length allowed is 30 characters")]
-		public string LastName { get; set; }
+        [Required]
+        [MinLength(3, ErrorMessage = "Enter at least 3 characters")]
+        public string LastName { get; set; }
 
 		[ForeignKey(nameof(Position))]
 		public int? PositionID { get; set; }
 		public Position? Position { get; set; }
-		public DateTime? DateOfBirth { get; set; }
+
+		[Required(ErrorMessage = "Date of birth is required")]
+		public DateTime DateOfBirth { get; set; }
 
 		[ForeignKey(nameof(Country))]
 		public int? CountryID { get; set; }
@@ -28,18 +32,18 @@ namespace NBA.Model
 		public int? TeamID { get; set; }
 		public Team? Team { get; set; }
 
+		[Range(1, 250, ErrorMessage = "Please enter a number between 1 and 250")]
 		public int Height { get; set; }
-		public int Weight { get; set; }
+
+        [Range(1, 200, ErrorMessage = "Please enter a number between 1 and 200")]
+        public int Weight { get; set; }
 		public string FullName => $"{FirstName} {LastName}";
 		public virtual ICollection<PlayerAttachment>? Attachments { get; set; }
 
 		public int? GetAge()
 		{
-			if (!DateOfBirth.HasValue)
-				return null;
-
 			var today = DateTime.Today;
-			var age = today.Year - DateOfBirth.Value.Year;
+			var age = today.Year - DateOfBirth.Year;
 			return age;
 		}
 	}

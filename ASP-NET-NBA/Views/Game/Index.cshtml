@@ -1,13 +1,13 @@
 ﻿@using NBA.Model
-@model List<Player>
+@model List<Game>
 
 @{
-	ViewData["Title"] = "Player Home Page";
+	ViewData["Title"] = "Game Home Page";
 }
 
-<h1>Player list</h1>
+<h1>Game list</h1>
 <div style="margin-top: 20px; margin-bottom: 10px;">
-	<partial name="_PlayerFilter" model="new PlayerFilterModel()" />
+	<partial name="_GameFilter" model="new GameFilterModel()" />
 </div>
 
 <div class="row" id="tableContainer">
@@ -28,7 +28,7 @@
 		function performFilter() {
 			var formData = $("#form").serialize();
 			$.ajax({
-				url: "@Url.Action("IndexAjax", new PlayerFilterModel())",
+				url: "@Url.Action("IndexAjax", new GameFilterModel())",
 				method: "POST",
 				data: formData,
 				success: function (html) {

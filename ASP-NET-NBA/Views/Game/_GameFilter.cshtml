@@ -1,21 +1,16 @@
 ﻿@using ASP_NET_NBA.Models
 
-@model PlayerFilterModel
+@model GameFilterModel
+
 
 <form action="@Url.Action("Index")" method="post" id="form">
-	<div class="row">
-		<div class="col">
-			<input asp-for="FullName" class="form-control" type="text" placeholder="Name and Surname" />
-		</div>
-		<div class="col">
-			<input asp-for="Country" class="form-control" type="text" placeholder="Country" />
-		</div>
-		<div class="col">
-			<input asp-for="Team" class="form-control" type="text" placeholder="Team" />
-		</div>
-		<div class="col">
-			<button type="button" id="searchButton" class="btn btn-outline-info">Search</button>
-			<a asp-action="Create" class="btn btn-success">New</a>
-		</div>
+<div class="row">
+	<div class="col">
+		<input asp-for="Team" class="form-control" type="text" placeholder="Team" />
 	</div>
+	<div class="col">
+		<button type="button" id="searchButton" class="btn btn-outline-info">Search</button>
+		<a asp-action="Create" class="btn btn-success">New</a>
+	</div>
+</div>
 </form>

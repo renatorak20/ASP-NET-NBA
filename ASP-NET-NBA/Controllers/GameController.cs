@@ -87,23 +87,63 @@ namespace ASP_NET_NBA.Controllers
             }
         }
 
+		[ActionName(nameof(Edit))]
+		[Authorize(Roles = "Admin, Manager")]
+		public IActionResult Edit(int id)
+		{
+			var model = _dbContext.Games.FirstOrDefault(c => c.ID == id);
+			this.FillDropdownValues();
+			return View(model);
+		}
 
-        [HttpPost]
-        public IActionResult IndexAjax(TeamFilterModel filterTeam)
+		[HttpPost]
+		[ActionName(nameof(Edit))]
+		[Authorize(Roles = "Admin, Manager")]
+		public async Task<IActionResult> EditPost(int id)
+		{
+			var game = _dbContext.Games.Single(c => c.ID == id);
+
+			var ok = await this.TryUpdateModelAsync(game);
+
+			if (ok && this.ModelState.IsValid)
+			{
+				_dbContext.SaveChanges();
+				return RedirectToAction(nameof(Index));
+			}
+
+			this.FillDropdownValues();
+			return View();
+		}
+
+		[Authorize(Roles = "Admin")]
+		public IActionResult Delete(int id)
+		{
+			Game? gameToDelete = _dbContext.Games.FirstOrDefault(c => c.ID == id);
+
+			if (gameToDelete == null)
+			{
+				return NotFound();
+			}
+
+			_dbContext.Games.Remove(gameToDelete);
+			_dbContext.SaveChanges();
+
+
+			return RedirectToAction(nameof(Index));
+		}
+
+
+		[HttpPost]
+        public IActionResult IndexAjax(GameFilterModel filterGame)
         {
-            filterTeam ??= new TeamFilterModel();
+            filterGame ??= new GameFilterModel();
 
-            var teamQuery = _dbContext.Teams.Include(p => p.Venue).Include(p => p.Coach).Include(p => p.Conference).AsQueryable();
-            if (!string.IsNullOrWhiteSpace(filterTeam.Venue))
-                teamQuery = teamQuery.Where(p => (p.Venue.Name).Contains(filterTeam.Venue, StringComparison.CurrentCultureIgnoreCase));
+            var gameQuery = _dbContext.Games.Include(p => p.Venue).Include(p => p.TeamHome).Include(p => p.TeamAway).AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(filterTeam.Team))
-                teamQuery = teamQuery.Where(p => p.Name.ToLower().Contains(filterTeam.Team.ToLower()));
+            if (!string.IsNullOrWhiteSpace(filterGame.Team))
+                gameQuery = gameQuery.Where(p => p.TeamHome.Name.ToLower().Contains(filterGame.Team.ToLower()) || p.TeamAway.Name.ToLower().Contains(filterGame.Team.ToLower()));
 
-            if (!string.IsNullOrWhiteSpace(filterTeam.Conference))
-                teamQuery = teamQuery.Where(p => p.Conference.ID.ToString().ToLower().Contains(filterTeam.Conference.ToLower()));
-
-            var model = teamQuery.ToList();
+            var model = gameQuery.ToList();
             return PartialView("_IndexTable", model);
         }
 
@@ -111,16 +151,15 @@ namespace ASP_NET_NBA.Controllers
         {
             FillTeams();
             FillVenues();
-        }
+            FillConferences();
+
+		}
 
         private void FillTeams()
         {
             var teams = new List<SelectListItem>();
 
             var listItem = new SelectListItem();
-            listItem.Text = "- select -";
-            listItem.Value = "";
-            teams.Add(listItem);
 
             foreach (var category in _dbContext.Teams)
             {
@@ -148,5 +187,23 @@ namespace ASP_NET_NBA.Controllers
 
             ViewBag.PossibleVenues = venues;
         }
-    }
+
+		private void FillConferences()
+		{
+			var conferences = new List<SelectListItem>();
+
+			var listItem = new SelectListItem();
+			listItem.Text = "- select -";
+			listItem.Value = "";
+			conferences.Add(listItem);
+
+			foreach (var category in _dbContext.Conferences)
+			{
+				listItem = new SelectListItem(category.Name, category.ID.ToString());
+				conferences.Add(listItem);
+			}
+
+			ViewBag.PossibleConferences = conferences;
+		}
+	}
 }

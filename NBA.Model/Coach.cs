@@ -13,12 +13,16 @@ namespace NBA.Model
 		[Key]
 		public int ID { get; set; }
 
-		[StringLength(30, ErrorMessage = "Maximum length allowed is 30 characters")]
-		public string FirstName { get; set; }
+        [Required]
+        [MinLength(3, ErrorMessage = "Enter at least 3 characters")]
+        public string FirstName { get; set; }
 
-		[StringLength(30, ErrorMessage = "Maximum length allowed is 30 characters")]
-		public string LastName { get; set; }
-		public DateTime? DateOfBirth { get; set; }
+        [Required]
+        [MinLength(3, ErrorMessage = "Enter at least 3 characters")]
+        public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Date of birth is required")]
+        public DateTime DateOfBirth { get; set; }
 
 		[ForeignKey(nameof(Country))]
 		public int? CountryID { get; set; }
@@ -31,11 +35,8 @@ namespace NBA.Model
 
         public int? GetAge()
 		{
-			if (!DateOfBirth.HasValue)
-				return null;
-
 			var today = DateTime.Today;
-			var age = today.Year - DateOfBirth.Value.Year;
+			var age = today.Year - DateOfBirth.Year;
 			return age;
 		}
 
