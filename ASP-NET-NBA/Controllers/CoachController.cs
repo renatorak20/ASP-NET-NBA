@@ -1,6 +1,4 @@
 ﻿using ASP_NET_NBA.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -48,13 +46,29 @@ namespace ASP_NET_NBA.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Coach model)
+        public async Task<IActionResult> CreateAsync(NBA.Model.Coach model)
         {
             if (ModelState.IsValid)
             {
+				var team = _dbContext.Teams
+					.Include(t => t.Coach)
+					.Where(t => t.ID == model.TeamID)
+					.FirstOrDefault();
+
+				if (team.CoachID != null)
+				{
+					return BadRequest("Team already has dedicated coach!");
+				}
+
                 _dbContext.Coaches.Add(model);
                 _dbContext.SaveChanges();
 
+				team.CoachID = model.ID;
+				var ok = await this.TryUpdateModelAsync(team);
+				if (ok)
+				{
+					_dbContext.SaveChanges();
+				}
                 return RedirectToAction(nameof(Index));
             }
             else
@@ -143,9 +157,9 @@ namespace ASP_NET_NBA.Controllers
 			return PartialView("_IndexTable", model);
 		}
 
-		public IActionResult Delete(int id)
+		public async Task<IActionResult> DeleteAsync(int id)
 		{
-            Coach? coachToDelete = _dbContext.Coaches.FirstOrDefault(c => c.ID == id);
+            NBA.Model.Coach? coachToDelete = _dbContext.Coaches.FirstOrDefault(c => c.ID == id);
 
 			if (coachToDelete == null)
 			{
@@ -155,6 +169,17 @@ namespace ASP_NET_NBA.Controllers
 			_dbContext.Coaches.Remove(coachToDelete);
 			_dbContext.SaveChanges();
 
+			var team = _dbContext.Teams.Include(t => t.Coach).Where(t => t.CoachID == id).FirstOrDefault();
+			if (team != null)
+			{
+				team.CoachID = null;
+
+				var ok = await this.TryUpdateModelAsync(team);
+				if (ok)
+				{
+					_dbContext.SaveChanges();
+				}
+			}
 
 			return RedirectToAction(nameof(Index));
 		}

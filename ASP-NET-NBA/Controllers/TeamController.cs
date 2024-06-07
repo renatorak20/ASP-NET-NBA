@@ -22,6 +22,7 @@ namespace ASP_NET_NBA.Controllers
             var teamQuery = _dbContext.Teams
                 .Include(p => p.Venue)
                 .Include(p => p.Conference)
+                .Include(p => p.Coach)
                 .AsQueryable();
 
             var model = teamQuery.ToList();
@@ -29,18 +30,37 @@ namespace ASP_NET_NBA.Controllers
             return View(model);
         }
 
-        public IActionResult Details(int? id = null)
-        {
-            var player = _dbContext.Teams
-                .Include(p => p.Venue)
-                .Include(p => p.Conference)
-                .Where(p => p.ID == id)
-                .FirstOrDefault();
+		public IActionResult Details(int? id = null)
+		{
+			var team = _dbContext.Teams
+				.Include(p => p.Venue)
+				.Include(p => p.Conference)
+				.Include(p => p.Coach)
+				.Where(p => p.ID == id)
+				.FirstOrDefault();
 
-            return View(player);
-        }
+			if (team == null)
+			{
+				return NotFound();
+			}
 
-        [HttpPost]
+			var players = _dbContext.Players
+				.Include(p => p.Position)
+				.Include(p => p.Country)
+				.Where(p => p.TeamID == id)
+				.ToList();
+
+			var viewModel = new TeamDetailsViewModel
+			{
+				Team = team,
+				Players = players
+			};
+
+			return View(viewModel);
+		}
+
+
+		[HttpPost]
         public IActionResult IndexAjax(TeamFilterModel filterTeam)
         {
             filterTeam ??= new TeamFilterModel();

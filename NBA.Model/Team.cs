@@ -25,6 +25,7 @@ namespace NBA.Model
         [ForeignKey(nameof(Coach))]
         public int? CoachID { get; set; }
         public Coach? Coach { get; set; }
-        public virtual ICollection<Player>? Players { get; set; }
+		public string? Path { get; set; }
+		public virtual ICollection<Player>? Players { get; set; }
 	}
 }

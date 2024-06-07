@@ -12,7 +12,12 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<NBAManagerDbContext>(options =>
 	options.UseSqlServer(
 		builder.Configuration.GetConnectionString("NBAManagerDbContext"),
-			opt => opt.MigrationsAssembly("NBA.DAL")));
+			options => options.EnableRetryOnFailure(
+					maxRetryCount: 5,
+					maxRetryDelay: System.TimeSpan.FromSeconds(30),
+					errorNumbersToAdd: null)
+				)
+	);
 services.AddMvc();
 var app = builder.Build();
 

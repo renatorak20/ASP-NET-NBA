@@ -12,8 +12,8 @@ using NBA.DAL;
 namespace NBA.DAL.Migrations
 {
     [DbContext(typeof(NBAManagerDbContext))]
-    [Migration("20240606103830_PlayerWH")]
-    partial class PlayerWH
+    [Migration("20240607135121_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -58,7 +58,36 @@ namespace NBA.DAL.Migrations
 
                     b.HasIndex("TeamID");
 
-                    b.ToTable("Coach");
+                    b.ToTable("Coaches");
+                });
+
+            modelBuilder.Entity("NBA.Model.Conference", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Conferences");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Eastern Conference"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Western Conference"
+                        });
                 });
 
             modelBuilder.Entity("NBA.Model.Country", b =>
@@ -1121,7 +1150,7 @@ namespace NBA.DAL.Migrations
 
                     b.HasIndex("PlayerID");
 
-                    b.ToTable("PlayerAttachment");
+                    b.ToTable("PlayerAttachments");
                 });
 
             modelBuilder.Entity("NBA.Model.Position", b =>
@@ -1176,14 +1205,27 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
+                    b.Property<int?>("CoachID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ConferenceID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("VenueID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
+
+                    b.HasIndex("CoachID");
+
+                    b.HasIndex("ConferenceID");
 
                     b.HasIndex("VenueID");
 
@@ -1193,181 +1235,241 @@ namespace NBA.DAL.Migrations
                         new
                         {
                             ID = 1,
+                            ConferenceID = 1,
                             Name = "Atlanta Hawks",
+                            Path = "/images/teams/1.png",
                             VenueID = 1
                         },
                         new
                         {
                             ID = 2,
+                            ConferenceID = 1,
                             Name = "Boston Celtics",
+                            Path = "/images/teams/2.png",
                             VenueID = 2
                         },
                         new
                         {
                             ID = 3,
+                            ConferenceID = 1,
                             Name = "Brooklyn Nets",
+                            Path = "/images/teams/3.png",
                             VenueID = 3
                         },
                         new
                         {
                             ID = 4,
+                            ConferenceID = 1,
                             Name = "Charlotte Hornets",
+                            Path = "/images/teams/4.png",
                             VenueID = 4
                         },
                         new
                         {
                             ID = 5,
+                            ConferenceID = 1,
                             Name = "Chicago Bulls",
+                            Path = "/images/teams/5.png",
                             VenueID = 5
                         },
                         new
                         {
                             ID = 6,
+                            ConferenceID = 1,
                             Name = "Cleveland Cavaliers",
+                            Path = "/images/teams/6.png",
                             VenueID = 6
                         },
                         new
                         {
                             ID = 7,
+                            ConferenceID = 2,
                             Name = "Dallas Mavericks",
+                            Path = "/images/teams/7.png",
                             VenueID = 7
                         },
                         new
                         {
                             ID = 8,
+                            ConferenceID = 2,
                             Name = "Denver Nuggets",
+                            Path = "/images/teams/8.png",
                             VenueID = 8
                         },
                         new
                         {
                             ID = 9,
+                            ConferenceID = 1,
                             Name = "Detroit Pistons",
+                            Path = "/images/teams/9.png",
                             VenueID = 9
                         },
                         new
                         {
                             ID = 10,
+                            ConferenceID = 2,
                             Name = "Golden State Warriors",
+                            Path = "/images/teams/10.png",
                             VenueID = 10
                         },
                         new
                         {
                             ID = 11,
+                            ConferenceID = 2,
                             Name = "Houston Rockets",
+                            Path = "/images/teams/11.png",
                             VenueID = 11
                         },
                         new
                         {
                             ID = 12,
+                            ConferenceID = 1,
                             Name = "Indiana Pacers",
+                            Path = "/images/teams/12.png",
                             VenueID = 12
                         },
                         new
                         {
                             ID = 13,
+                            ConferenceID = 2,
                             Name = "Los Angeles Clippers",
+                            Path = "/images/teams/13.png",
                             VenueID = 13
                         },
                         new
                         {
                             ID = 14,
+                            ConferenceID = 2,
                             Name = "Los Angeles Lakers",
+                            Path = "/images/teams/14.png",
                             VenueID = 14
                         },
                         new
                         {
                             ID = 15,
+                            ConferenceID = 2,
                             Name = "Memphis Grizzlies",
+                            Path = "/images/teams/15.png",
                             VenueID = 15
                         },
                         new
                         {
                             ID = 16,
+                            ConferenceID = 1,
                             Name = "Miami Heat",
+                            Path = "/images/teams/16.png",
                             VenueID = 16
                         },
                         new
                         {
                             ID = 17,
+                            ConferenceID = 1,
                             Name = "Milwaukee Bucks",
+                            Path = "/images/teams/17.png",
                             VenueID = 17
                         },
                         new
                         {
                             ID = 18,
+                            ConferenceID = 2,
                             Name = "Minnesota Timberwolves",
+                            Path = "/images/teams/18.png",
                             VenueID = 18
                         },
                         new
                         {
                             ID = 19,
+                            ConferenceID = 2,
                             Name = "New Orleans Pelicans",
+                            Path = "/images/teams/19.png",
                             VenueID = 19
                         },
                         new
                         {
                             ID = 20,
+                            ConferenceID = 1,
                             Name = "New York Knicks",
+                            Path = "/images/teams/20.png",
                             VenueID = 20
                         },
                         new
                         {
                             ID = 21,
+                            ConferenceID = 2,
                             Name = "Oklahoma City Thunder",
+                            Path = "/images/teams/21.png",
                             VenueID = 21
                         },
                         new
                         {
                             ID = 22,
+                            ConferenceID = 1,
                             Name = "Orlando Magic",
+                            Path = "/images/teams/22.png",
                             VenueID = 22
                         },
                         new
                         {
                             ID = 23,
+                            ConferenceID = 1,
                             Name = "Philadelphia 76ers",
+                            Path = "/images/teams/23.png",
                             VenueID = 23
                         },
                         new
                         {
                             ID = 24,
+                            ConferenceID = 2,
                             Name = "Phoenix Suns",
+                            Path = "/images/teams/24.png",
                             VenueID = 24
                         },
                         new
                         {
                             ID = 25,
+                            ConferenceID = 2,
                             Name = "Portland Trail Blazers",
+                            Path = "/images/teams/25.png",
                             VenueID = 25
                         },
                         new
                         {
                             ID = 26,
+                            ConferenceID = 2,
                             Name = "Sacramento Kings",
+                            Path = "/images/teams/26.png",
                             VenueID = 26
                         },
                         new
                         {
                             ID = 27,
+                            ConferenceID = 2,
                             Name = "San Antonio Spurs",
+                            Path = "/images/teams/27.png",
                             VenueID = 27
                         },
                         new
                         {
                             ID = 28,
+                            ConferenceID = 1,
                             Name = "Toronto Raptors",
+                            Path = "/images/teams/28.png",
                             VenueID = 28
                         },
                         new
                         {
                             ID = 29,
+                            ConferenceID = 2,
                             Name = "Utah Jazz",
+                            Path = "/images/teams/29.png",
                             VenueID = 29
                         },
                         new
                         {
                             ID = 30,
+                            ConferenceID = 1,
                             Name = "Washington Wizards",
+                            Path = "/images/teams/30.png",
                             VenueID = 30
                         });
                 });
@@ -1582,7 +1684,7 @@ namespace NBA.DAL.Migrations
                         .HasForeignKey("CountryID");
 
                     b.HasOne("NBA.Model.Team", "Team")
-                        .WithMany("Coaches")
+                        .WithMany()
                         .HasForeignKey("TeamID");
 
                     b.Navigation("Country");
@@ -1624,9 +1726,21 @@ namespace NBA.DAL.Migrations
 
             modelBuilder.Entity("NBA.Model.Team", b =>
                 {
+                    b.HasOne("NBA.Model.Coach", "Coach")
+                        .WithMany()
+                        .HasForeignKey("CoachID");
+
+                    b.HasOne("NBA.Model.Conference", "Conference")
+                        .WithMany()
+                        .HasForeignKey("ConferenceID");
+
                     b.HasOne("NBA.Model.Venue", "Venue")
                         .WithMany("Teams")
                         .HasForeignKey("VenueID");
+
+                    b.Navigation("Coach");
+
+                    b.Navigation("Conference");
 
                     b.Navigation("Venue");
                 });
@@ -1650,8 +1764,6 @@ namespace NBA.DAL.Migrations
 
             modelBuilder.Entity("NBA.Model.Team", b =>
                 {
-                    b.Navigation("Coaches");
-
                     b.Navigation("Players");
                 });
 

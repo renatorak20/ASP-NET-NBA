@@ -1212,6 +1212,9 @@ namespace NBA.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Path")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("VenueID")
                         .HasColumnType("int");
 
@@ -1231,6 +1234,7 @@ namespace NBA.DAL.Migrations
                             ID = 1,
                             ConferenceID = 1,
                             Name = "Atlanta Hawks",
+                            Path = "/images/teams/1.png",
                             VenueID = 1
                         },
                         new
@@ -1238,6 +1242,7 @@ namespace NBA.DAL.Migrations
                             ID = 2,
                             ConferenceID = 1,
                             Name = "Boston Celtics",
+                            Path = "/images/teams/2.png",
                             VenueID = 2
                         },
                         new
@@ -1245,6 +1250,7 @@ namespace NBA.DAL.Migrations
                             ID = 3,
                             ConferenceID = 1,
                             Name = "Brooklyn Nets",
+                            Path = "/images/teams/3.png",
                             VenueID = 3
                         },
                         new
@@ -1252,6 +1258,7 @@ namespace NBA.DAL.Migrations
                             ID = 4,
                             ConferenceID = 1,
                             Name = "Charlotte Hornets",
+                            Path = "/images/teams/4.png",
                             VenueID = 4
                         },
                         new
@@ -1259,6 +1266,7 @@ namespace NBA.DAL.Migrations
                             ID = 5,
                             ConferenceID = 1,
                             Name = "Chicago Bulls",
+                            Path = "/images/teams/5.png",
                             VenueID = 5
                         },
                         new
@@ -1266,6 +1274,7 @@ namespace NBA.DAL.Migrations
                             ID = 6,
                             ConferenceID = 1,
                             Name = "Cleveland Cavaliers",
+                            Path = "/images/teams/6.png",
                             VenueID = 6
                         },
                         new
@@ -1273,6 +1282,7 @@ namespace NBA.DAL.Migrations
                             ID = 7,
                             ConferenceID = 2,
                             Name = "Dallas Mavericks",
+                            Path = "/images/teams/7.png",
                             VenueID = 7
                         },
                         new
@@ -1280,6 +1290,7 @@ namespace NBA.DAL.Migrations
                             ID = 8,
                             ConferenceID = 2,
                             Name = "Denver Nuggets",
+                            Path = "/images/teams/8.png",
                             VenueID = 8
                         },
                         new
@@ -1287,6 +1298,7 @@ namespace NBA.DAL.Migrations
                             ID = 9,
                             ConferenceID = 1,
                             Name = "Detroit Pistons",
+                            Path = "/images/teams/9.png",
                             VenueID = 9
                         },
                         new
@@ -1294,6 +1306,7 @@ namespace NBA.DAL.Migrations
                             ID = 10,
                             ConferenceID = 2,
                             Name = "Golden State Warriors",
+                            Path = "/images/teams/10.png",
                             VenueID = 10
                         },
                         new
@@ -1301,6 +1314,7 @@ namespace NBA.DAL.Migrations
                             ID = 11,
                             ConferenceID = 2,
                             Name = "Houston Rockets",
+                            Path = "/images/teams/11.png",
                             VenueID = 11
                         },
                         new
@@ -1308,6 +1322,7 @@ namespace NBA.DAL.Migrations
                             ID = 12,
                             ConferenceID = 1,
                             Name = "Indiana Pacers",
+                            Path = "/images/teams/12.png",
                             VenueID = 12
                         },
                         new
@@ -1315,6 +1330,7 @@ namespace NBA.DAL.Migrations
                             ID = 13,
                             ConferenceID = 2,
                             Name = "Los Angeles Clippers",
+                            Path = "/images/teams/13.png",
                             VenueID = 13
                         },
                         new
@@ -1322,6 +1338,7 @@ namespace NBA.DAL.Migrations
                             ID = 14,
                             ConferenceID = 2,
                             Name = "Los Angeles Lakers",
+                            Path = "/images/teams/14.png",
                             VenueID = 14
                         },
                         new
@@ -1329,6 +1346,7 @@ namespace NBA.DAL.Migrations
                             ID = 15,
                             ConferenceID = 2,
                             Name = "Memphis Grizzlies",
+                            Path = "/images/teams/15.png",
                             VenueID = 15
                         },
                         new
@@ -1336,6 +1354,7 @@ namespace NBA.DAL.Migrations
                             ID = 16,
                             ConferenceID = 1,
                             Name = "Miami Heat",
+                            Path = "/images/teams/16.png",
                             VenueID = 16
                         },
                         new
@@ -1343,6 +1362,7 @@ namespace NBA.DAL.Migrations
                             ID = 17,
                             ConferenceID = 1,
                             Name = "Milwaukee Bucks",
+                            Path = "/images/teams/17.png",
                             VenueID = 17
                         },
                         new
@@ -1350,6 +1370,7 @@ namespace NBA.DAL.Migrations
                             ID = 18,
                             ConferenceID = 2,
                             Name = "Minnesota Timberwolves",
+                            Path = "/images/teams/18.png",
                             VenueID = 18
                         },
                         new
@@ -1357,6 +1378,7 @@ namespace NBA.DAL.Migrations
                             ID = 19,
                             ConferenceID = 2,
                             Name = "New Orleans Pelicans",
+                            Path = "/images/teams/19.png",
                             VenueID = 19
                         },
                         new
@@ -1364,6 +1386,7 @@ namespace NBA.DAL.Migrations
                             ID = 20,
                             ConferenceID = 1,
                             Name = "New York Knicks",
+                            Path = "/images/teams/20.png",
                             VenueID = 20
                         },
                         new
@@ -1371,6 +1394,7 @@ namespace NBA.DAL.Migrations
                             ID = 21,
                             ConferenceID = 2,
                             Name = "Oklahoma City Thunder",
+                            Path = "/images/teams/21.png",
                             VenueID = 21
                         },
                         new
@@ -1378,6 +1402,7 @@ namespace NBA.DAL.Migrations
                             ID = 22,
                             ConferenceID = 1,
                             Name = "Orlando Magic",
+                            Path = "/images/teams/22.png",
                             VenueID = 22
                         },
                         new
@@ -1385,6 +1410,7 @@ namespace NBA.DAL.Migrations
                             ID = 23,
                             ConferenceID = 1,
                             Name = "Philadelphia 76ers",
+                            Path = "/images/teams/23.png",
                             VenueID = 23
                         },
                         new
@@ -1392,6 +1418,7 @@ namespace NBA.DAL.Migrations
                             ID = 24,
                             ConferenceID = 2,
                             Name = "Phoenix Suns",
+                            Path = "/images/teams/24.png",
                             VenueID = 24
                         },
                         new
@@ -1399,6 +1426,7 @@ namespace NBA.DAL.Migrations
                             ID = 25,
                             ConferenceID = 2,
                             Name = "Portland Trail Blazers",
+                            Path = "/images/teams/25.png",
                             VenueID = 25
                         },
                         new
@@ -1406,6 +1434,7 @@ namespace NBA.DAL.Migrations
                             ID = 26,
                             ConferenceID = 2,
                             Name = "Sacramento Kings",
+                            Path = "/images/teams/26.png",
                             VenueID = 26
                         },
                         new
@@ -1413,6 +1442,7 @@ namespace NBA.DAL.Migrations
                             ID = 27,
                             ConferenceID = 2,
                             Name = "San Antonio Spurs",
+                            Path = "/images/teams/27.png",
                             VenueID = 27
                         },
                         new
@@ -1420,6 +1450,7 @@ namespace NBA.DAL.Migrations
                             ID = 28,
                             ConferenceID = 1,
                             Name = "Toronto Raptors",
+                            Path = "/images/teams/28.png",
                             VenueID = 28
                         },
                         new
@@ -1427,6 +1458,7 @@ namespace NBA.DAL.Migrations
                             ID = 29,
                             ConferenceID = 2,
                             Name = "Utah Jazz",
+                            Path = "/images/teams/29.png",
                             VenueID = 29
                         },
                         new
@@ -1434,6 +1466,7 @@ namespace NBA.DAL.Migrations
                             ID = 30,
                             ConferenceID = 1,
                             Name = "Washington Wizards",
+                            Path = "/images/teams/30.png",
                             VenueID = 30
                         });
                 });

@@ -5,8 +5,8 @@
 	<thead>
 		<tr>
 			<th>Player</th>
-			<th>Country</th>
 			<th>Team</th>
+			<th>Country</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -18,13 +18,17 @@
 				<td>
 					<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
 				</td>
-				<td>@item.Country?.Name</td>
 				<td>@item.Team?.Name</td>
+				<td>@item.Country?.Name</td>
 				<td>
-					<a asp-action="Edit" asp-route-id="@item.ID">[edit]</a>
+					<button type="button" class="btn btn-warning">
+						<a asp-action="Edit" asp-route-id="@item.ID" style="color:white">Edit</a>
+					</button>
 				</td>
 				<td>
-					<a asp-action="Delete" asp-route-id="@item.ID">[delete]</a>
+					<button type="button" class="btn btn-danger">
+						<a asp-action="Delete" asp-route-id="@item.ID" style="color:white">Delete</a>
+					</button>
 				</td>
 			</tr>
 		}

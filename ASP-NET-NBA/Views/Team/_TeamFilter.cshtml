@@ -11,7 +11,8 @@
 			<input asp-for="Venue" class="form-control" type="text" placeholder="Venue" />
 		</div>
 		<div class="col">
-			<select asp-for="Conference" class="form-control" asp-items="ViewBag.PossibleConferences"/>
+			<select asp-for="Conference" class="form-control" asp-items="ViewBag.PossibleConferences">
+			</select>
 		</div>
 		<div class="col">
 			<button type="button" id="searchButton" class="btn btn-outline-info">Search</button>

@@ -64,3 +64,30 @@ section {
         font-weight: bold;
     }
 
+
+.team-row {
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+    .team-row:hover {
+        opacity: 1;
+    }
+
+.team-logo {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.3s, width 0.3s, height 0.3s;
+}
+
+.team-row:hover .team-logo {
+    transform: scale(2);
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: all 0.2s ease-in-out;
+}

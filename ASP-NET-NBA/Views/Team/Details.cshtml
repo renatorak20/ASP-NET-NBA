@@ -1,5 +1,5 @@
 ﻿@using NBA.Model
-@model Team
+@model TeamDetailsViewModel
 
 @{
 	ViewData["Title"] = "Details";
@@ -7,12 +7,12 @@
 
 <h2>Details</h2>
 
-@if (Model != null)
+@if (Model.Team != null)
 {
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a asp-action="Index">Team list</a></li>
-			<li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+			<li class="breadcrumb-item active" aria-current="page">@Model.Team.Name</li>
 		</ol>
 	</nav>
 
@@ -24,33 +24,43 @@
 				ID
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.ID)
+				@Html.DisplayFor(model => model.Team.ID)
 			</dd>
 			<dt>
 				Full Name
 			</dt>
 			<dd>
-				@Html.DisplayFor(model => model.Name)
+				@Html.DisplayFor(model => model.Team.Name)
 			</dd>
 			<dt>
 				Conference
 			</dt>
 			<dd>
-				@Model?.Conference?.Name
+				@Model?.Team.Conference?.Name
 			</dd>
 			<dt>
 				Venue
 			</dt>
 			<dd>
-				@Model?.Venue?.Name
+				@Model?.Team.Venue?.Name
+			</dd>
+			<dt>
+				Venue City
+			</dt>
+			<dd>
+				@Model?.Team.Venue?.City
 			</dd>
 			<dt>
 				Coach
 			</dt>
 			<dd>
-				@Model?.Coach?.FullName
+				@(Model?.Team.Coach?.FullName ?? "No coach yet!")
 			</dd>
 		</dl>
+	</div>
+
+	<div class="row" id="tableContainer">
+		<partial name="_DetailsTable" model="Model" />
 	</div>
 
 }
