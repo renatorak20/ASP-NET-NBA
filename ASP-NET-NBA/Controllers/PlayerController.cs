@@ -19,7 +19,8 @@ namespace ASP_NET_NBA.Controllers
 			this._dbContext = dbContext;
 		}
 
-		public IActionResult Index()
+        [AllowAnonymous]
+        public IActionResult Index()
 		{
 			var playerQuery = _dbContext.Players
 				.Include(p => p.Country)
@@ -31,7 +32,8 @@ namespace ASP_NET_NBA.Controllers
 			return View(model);
 		}
 
-		public IActionResult Details(int? id = null)
+        [Authorize]
+        public IActionResult Details(int? id = null)
 		{
 			var player = _dbContext.Players
 				.Include(p => p.Country)
@@ -43,6 +45,7 @@ namespace ASP_NET_NBA.Controllers
 			return View(player);
 		}
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             this.FillDropdownValues();
@@ -50,6 +53,7 @@ namespace ASP_NET_NBA.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(Player model)
         {
             if (ModelState.IsValid)
@@ -67,7 +71,8 @@ namespace ASP_NET_NBA.Controllers
         }
 
 		[ActionName(nameof(Edit))]
-		public IActionResult Edit(int id)
+        [Authorize(Roles = "Admin, Manager")]
+        public IActionResult Edit(int id)
 		{
 			var model = _dbContext.Players.FirstOrDefault(c => c.ID == id);
 			this.FillDropdownValues();
@@ -76,7 +81,8 @@ namespace ASP_NET_NBA.Controllers
 
 		[HttpPost]
 		[ActionName(nameof(Edit))]
-		public async Task<IActionResult> EditPost(int id)
+        [Authorize(Roles = "Admin, Manager")]
+        public async Task<IActionResult> EditPost(int id)
 		{
 			var player = _dbContext.Players.Single(c => c.ID == id);
 
@@ -145,7 +151,8 @@ namespace ASP_NET_NBA.Controllers
 			return PartialView("_IndexTable", model);
 		}
 
-		public IActionResult Delete(int id)
+        [Authorize(Roles = "Admin")]
+        public IActionResult Delete(int id)
 		{
 			Player? playerToDelete = _dbContext.Players.FirstOrDefault(c => c.ID == id);
 

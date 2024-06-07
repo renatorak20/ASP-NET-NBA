@@ -14,7 +14,7 @@
 		{
 			<tr>
 				<td>
-					<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
+					<a asp-action="Details" asp-controller="Player" asp-route-id="@item.ID">@item.FullName</a>
 				</td>
 				<td>@item.Country?.Name</td>
 				<td>@item.Position?.Name</td>

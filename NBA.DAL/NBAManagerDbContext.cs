@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using NBA.Model;
 
 namespace NBA.DAL
 {
-	public class NBAManagerDbContext: DbContext
+	public class NBAManagerDbContext : IdentityDbContext<AppUser>
 	{
 		public NBAManagerDbContext(DbContextOptions<NBAManagerDbContext> options) : base(options) { }
 
@@ -15,6 +16,7 @@ namespace NBA.DAL
 		public DbSet<Coach> Coaches { get; set; }
 		public DbSet<Conference> Conferences { get; set; }
 		public DbSet<PlayerAttachment> PlayerAttachments { get; set; }
+		public DbSet<Game> Games { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -294,7 +296,26 @@ namespace NBA.DAL
 				new Country { ID = 195, Name = "Zimbabwe" }
 			);
 
-		}
+            modelBuilder.Entity<Player>().HasData(
+				new Player { ID = 1, FirstName = "Michael", LastName = "Jordan", TeamID = 5, PositionID = 2, DateOfBirth = new DateTime(1963, 2, 17), Height = 198, Weight = 98, CountryID = 186 }, 
+				new Player { ID = 2, FirstName = "Scottie", LastName = "Pippen", TeamID = 5, PositionID = 3, DateOfBirth = new DateTime(1965, 9, 25), Height = 203, Weight = 102, CountryID = 186 },
+				new Player { ID = 7, FirstName = "Derrick", LastName = "Rose", TeamID = 5, PositionID = 1, DateOfBirth = new DateTime(1988, 10, 4), Height = 190, Weight = 89, CountryID = 186 },
+				new Player { ID = 8, FirstName = "Artūras", LastName = "Karnišovas", TeamID = 5, PositionID = 4, DateOfBirth = new DateTime(1971, 12, 28), Height = 203, Weight = 108, CountryID = 101 },
+
+				new Player { ID = 3, FirstName = "Luka", LastName = "Dončić", TeamID = 7, PositionID = 1, DateOfBirth = new DateTime(1999, 2, 28), Height = 201, Weight = 109, CountryID = 158 }, 
+				new Player { ID = 9, FirstName = "Dirk", LastName = "Nowitzki", TeamID = 7, PositionID = 4, DateOfBirth = new DateTime(1978, 6, 19), Height = 213, Weight = 111, CountryID = 64 },
+
+				new Player { ID = 4, FirstName = "Kobe", LastName = "Bryant", TeamID = 14, PositionID = 2, DateOfBirth = new DateTime(1978, 8, 23), Height = 198, Weight = 96, CountryID = 186 },
+				new Player { ID = 5, FirstName = "LeBron", LastName = "James", TeamID = 14, PositionID = 3, DateOfBirth = new DateTime(1984, 12, 30), Height = 206, Weight = 113, CountryID = 186 },
+				new Player { ID = 12, FirstName = "Magic", LastName = "Johnson", TeamID = 14, PositionID = 1, DateOfBirth = new DateTime(1959, 8, 14), Height = 206, Weight = 100, CountryID = 186 },
+				new Player { ID = 13, FirstName = "Shaquille", LastName = "O'Neal", TeamID = 14, PositionID = 5, DateOfBirth = new DateTime(1972, 3, 6), Height = 216, Weight = 147, CountryID = 186 },
+
+				new Player { ID = 33, FirstName = "Nikola", LastName = "Jokic", TeamID = 8, PositionID = 5, DateOfBirth = new DateTime(1995, 2, 19), Height = 208, Weight = 113, CountryID = 153 },
+				new Player { ID = 34, FirstName = "Carmelo", LastName = "Anthony", TeamID = 8, PositionID = 3, DateOfBirth = new DateTime(1984, 5, 29), Height = 203, Weight = 109, CountryID = 186 }
+
+            );
+
+        }
 
 	}
 }

@@ -1,0 +1,36 @@
+﻿@using NBA.Model;
+@model List<Player>
+
+<table style="margin-top: 20px;" id="tablica" class="table table-condensed">
+	<thead>
+		<tr>
+			<th>Player</th>
+			<th>Team</th>
+			<th>Country</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
+				</td>
+				<td>@item.Team?.Name</td>
+				<td>@item.Country?.Name</td>
+				<td>
+					<button type="button" class="btn btn-warning">
+						<a asp-action="Edit" asp-route-id="@item.ID" style="color:white">Edit</a>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger">
+						<a asp-action="Delete" asp-route-id="@item.ID" style="color:white">Delete</a>
+					</button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

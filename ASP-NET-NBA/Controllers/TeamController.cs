@@ -1,4 +1,5 @@
 ﻿using ASP_NET_NBA.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace ASP_NET_NBA.Controllers
             this._dbContext = dbContext;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var teamQuery = _dbContext.Teams
@@ -30,7 +32,8 @@ namespace ASP_NET_NBA.Controllers
             return View(model);
         }
 
-		public IActionResult Details(int? id = null)
+        [Authorize]
+        public IActionResult Details(int? id = null)
 		{
 			var team = _dbContext.Teams
 				.Include(p => p.Venue)
@@ -73,7 +76,7 @@ namespace ASP_NET_NBA.Controllers
                 teamQuery = teamQuery.Where(p => p.Name.ToLower().Contains(filterTeam.Team.ToLower()));
 
             if (!string.IsNullOrWhiteSpace(filterTeam.Conference))
-                teamQuery = teamQuery.Where(p => p.Conference.Name.ToLower().Contains(filterTeam.Conference.ToLower()));
+                teamQuery = teamQuery.Where(p => p.Conference.ID.ToString().ToLower().Contains(filterTeam.Conference.ToLower()));
 
             var model = teamQuery.ToList();
             return PartialView("_IndexTable", model);

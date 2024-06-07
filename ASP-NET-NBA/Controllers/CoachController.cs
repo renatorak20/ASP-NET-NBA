@@ -1,4 +1,5 @@
 ﻿using ASP_NET_NBA.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,8 @@ namespace ASP_NET_NBA.Controllers
 			this._dbContext = dbContext;
 		}
 
-		public IActionResult Index()
+        [AllowAnonymous]
+        public IActionResult Index()
 		{
 			var coachQuery = _dbContext.Coaches
 				.Include(p => p.Country)
@@ -28,6 +30,7 @@ namespace ASP_NET_NBA.Controllers
 			return View(model);
 		}
 
+		[Authorize]
 		public IActionResult Details(int? id = null)
 		{
 			var coach = _dbContext.Coaches
@@ -39,6 +42,7 @@ namespace ASP_NET_NBA.Controllers
 			return View(coach);
 		}
 
+		[Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             this.FillDropdownValues();
@@ -46,7 +50,8 @@ namespace ASP_NET_NBA.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsync(NBA.Model.Coach model)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> CreateAsync(Coach model)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +60,7 @@ namespace ASP_NET_NBA.Controllers
 					.Where(t => t.ID == model.TeamID)
 					.FirstOrDefault();
 
-				if (team.CoachID != null)
+				if (team?.CoachID != null)
 				{
 					return BadRequest("Team already has dedicated coach!");
 				}
@@ -78,7 +83,8 @@ namespace ASP_NET_NBA.Controllers
             }
         }
 
-		[ActionName(nameof(Edit))]
+        [Authorize(Roles = "Admin, Manager")]
+        [ActionName(nameof(Edit))]
 		public IActionResult Edit(int id)
 		{
 			var model = _dbContext.Coaches.FirstOrDefault(c => c.ID == id);
@@ -87,7 +93,8 @@ namespace ASP_NET_NBA.Controllers
 		}
 
 		[HttpPost]
-		[ActionName(nameof(Edit))]
+        [Authorize(Roles = "Admin, Manager")]
+        [ActionName(nameof(Edit))]
 		public async Task<IActionResult> EditPost(int id)
 		{
 			var coach = _dbContext.Coaches.Single(c => c.ID == id);
@@ -97,6 +104,15 @@ namespace ASP_NET_NBA.Controllers
 			if (ok && this.ModelState.IsValid)
 			{
 				_dbContext.SaveChanges();
+
+				if (coach.TeamID != null)
+				{
+                    var team = _dbContext.Teams.Single(t => t.ID == coach.TeamID);
+                    team.CoachID = id;
+
+                    await this.TryUpdateModelAsync(team);
+                }
+
 				return RedirectToAction(nameof(Index));
 			}
 
@@ -157,7 +173,8 @@ namespace ASP_NET_NBA.Controllers
 			return PartialView("_IndexTable", model);
 		}
 
-		public async Task<IActionResult> DeleteAsync(int id)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> DeleteAsync(int id)
 		{
             NBA.Model.Coach? coachToDelete = _dbContext.Coaches.FirstOrDefault(c => c.ID == id);
 

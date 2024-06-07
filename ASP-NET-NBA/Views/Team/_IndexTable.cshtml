@@ -27,3 +27,9 @@
     </tbody>
 </table>
 
+<script>
+    function redirectToDetails(id) {
+        var url = '@Url.Action("Details", "Team")/' + id;
+        window.location.href = url;
+    }
+</script>
