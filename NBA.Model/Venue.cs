@@ -8,6 +8,6 @@ namespace NBA.Model
 		public int ID { get; set; }
 		public string Name { get; set; }
 		public string City { get; set; }
-		public virtual ICollection<Team> Teams { get; set; }
+        public virtual Team Teams { get; set; }
 	}
 }

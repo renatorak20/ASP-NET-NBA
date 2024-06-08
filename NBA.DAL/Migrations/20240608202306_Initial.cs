@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NBA.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Something : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -89,6 +89,19 @@ namespace NBA.DAL.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Positions", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TeamAttachments",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Path = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TeamAttachments", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -217,9 +230,9 @@ namespace NBA.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CountryID = table.Column<int>(type: "int", nullable: true),
                     TeamID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -243,7 +256,7 @@ namespace NBA.DAL.Migrations
                     VenueID = table.Column<int>(type: "int", nullable: true),
                     ConferenceID = table.Column<int>(type: "int", nullable: true),
                     CoachID = table.Column<int>(type: "int", nullable: true),
-                    Path = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TeamAttachmentID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -257,6 +270,11 @@ namespace NBA.DAL.Migrations
                         name: "FK_Teams_Conferences_ConferenceID",
                         column: x => x.ConferenceID,
                         principalTable: "Conferences",
+                        principalColumn: "ID");
+                    table.ForeignKey(
+                        name: "FK_Teams_TeamAttachments_TeamAttachmentID",
+                        column: x => x.TeamAttachmentID,
+                        principalTable: "TeamAttachments",
                         principalColumn: "ID");
                     table.ForeignKey(
                         name: "FK_Teams_Venues_VenueID",
@@ -276,7 +294,7 @@ namespace NBA.DAL.Migrations
                     VenueID = table.Column<int>(type: "int", nullable: true),
                     HomeScore = table.Column<int>(type: "int", nullable: false),
                     AwayScore = table.Column<int>(type: "int", nullable: false),
-                    DateOfGame = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DateOfGame = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -304,10 +322,10 @@ namespace NBA.DAL.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PositionID = table.Column<int>(type: "int", nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CountryID = table.Column<int>(type: "int", nullable: true),
                     TeamID = table.Column<int>(type: "int", nullable: true),
                     Height = table.Column<int>(type: "int", nullable: false),
@@ -577,6 +595,43 @@ namespace NBA.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "TeamAttachments",
+                columns: new[] { "ID", "Path" },
+                values: new object[,]
+                {
+                    { 1, "/images/teams/1" },
+                    { 2, "/images/teams/2" },
+                    { 3, "/images/teams/3" },
+                    { 4, "/images/teams/4" },
+                    { 5, "/images/teams/5" },
+                    { 6, "/images/teams/6" },
+                    { 7, "/images/teams/7" },
+                    { 8, "/images/teams/8" },
+                    { 9, "/images/teams/9" },
+                    { 10, "/images/teams/10" },
+                    { 11, "/images/teams/11" },
+                    { 12, "/images/teams/12" },
+                    { 13, "/images/teams/13" },
+                    { 14, "/images/teams/14" },
+                    { 15, "/images/teams/15" },
+                    { 16, "/images/teams/16" },
+                    { 17, "/images/teams/17" },
+                    { 18, "/images/teams/18" },
+                    { 19, "/images/teams/19" },
+                    { 20, "/images/teams/20" },
+                    { 21, "/images/teams/21" },
+                    { 22, "/images/teams/22" },
+                    { 23, "/images/teams/23" },
+                    { 24, "/images/teams/24" },
+                    { 25, "/images/teams/25" },
+                    { 26, "/images/teams/26" },
+                    { 27, "/images/teams/27" },
+                    { 28, "/images/teams/28" },
+                    { 29, "/images/teams/29" },
+                    { 30, "/images/teams/30" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Venues",
                 columns: new[] { "ID", "City", "Name" },
                 values: new object[,]
@@ -615,39 +670,39 @@ namespace NBA.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teams",
-                columns: new[] { "ID", "CoachID", "ConferenceID", "Name", "Path", "VenueID" },
+                columns: new[] { "ID", "CoachID", "ConferenceID", "Name", "TeamAttachmentID", "VenueID" },
                 values: new object[,]
                 {
-                    { 1, null, 1, "Atlanta Hawks", "/images/teams/1.png", 1 },
-                    { 2, null, 1, "Boston Celtics", "/images/teams/2.png", 2 },
-                    { 3, null, 1, "Brooklyn Nets", "/images/teams/3.png", 3 },
-                    { 4, null, 1, "Charlotte Hornets", "/images/teams/4.png", 4 },
-                    { 5, null, 1, "Chicago Bulls", "/images/teams/5.png", 5 },
-                    { 6, null, 1, "Cleveland Cavaliers", "/images/teams/6.png", 6 },
-                    { 7, null, 2, "Dallas Mavericks", "/images/teams/7.png", 7 },
-                    { 8, null, 2, "Denver Nuggets", "/images/teams/8.png", 8 },
-                    { 9, null, 1, "Detroit Pistons", "/images/teams/9.png", 9 },
-                    { 10, null, 2, "Golden State Warriors", "/images/teams/10.png", 10 },
-                    { 11, null, 2, "Houston Rockets", "/images/teams/11.png", 11 },
-                    { 12, null, 1, "Indiana Pacers", "/images/teams/12.png", 12 },
-                    { 13, null, 2, "Los Angeles Clippers", "/images/teams/13.png", 13 },
-                    { 14, null, 2, "Los Angeles Lakers", "/images/teams/14.png", 14 },
-                    { 15, null, 2, "Memphis Grizzlies", "/images/teams/15.png", 15 },
-                    { 16, null, 1, "Miami Heat", "/images/teams/16.png", 16 },
-                    { 17, null, 1, "Milwaukee Bucks", "/images/teams/17.png", 17 },
-                    { 18, null, 2, "Minnesota Timberwolves", "/images/teams/18.png", 18 },
-                    { 19, null, 2, "New Orleans Pelicans", "/images/teams/19.png", 19 },
-                    { 20, null, 1, "New York Knicks", "/images/teams/20.png", 20 },
-                    { 21, null, 2, "Oklahoma City Thunder", "/images/teams/21.png", 21 },
-                    { 22, null, 1, "Orlando Magic", "/images/teams/22.png", 22 },
-                    { 23, null, 1, "Philadelphia 76ers", "/images/teams/23.png", 23 },
-                    { 24, null, 2, "Phoenix Suns", "/images/teams/24.png", 24 },
-                    { 25, null, 2, "Portland Trail Blazers", "/images/teams/25.png", 25 },
-                    { 26, null, 2, "Sacramento Kings", "/images/teams/26.png", 26 },
-                    { 27, null, 2, "San Antonio Spurs", "/images/teams/27.png", 27 },
-                    { 28, null, 1, "Toronto Raptors", "/images/teams/28.png", 28 },
-                    { 29, null, 2, "Utah Jazz", "/images/teams/29.png", 29 },
-                    { 30, null, 1, "Washington Wizards", "/images/teams/30.png", 30 }
+                    { 1, null, 1, "Atlanta Hawks", 1, 1 },
+                    { 2, null, 1, "Boston Celtics", 2, 2 },
+                    { 3, null, 1, "Brooklyn Nets", 3, 3 },
+                    { 4, null, 1, "Charlotte Hornets", 4, 4 },
+                    { 5, null, 1, "Chicago Bulls", 5, 5 },
+                    { 6, null, 1, "Cleveland Cavaliers", 6, 6 },
+                    { 7, null, 2, "Dallas Mavericks", 7, 7 },
+                    { 8, null, 2, "Denver Nuggets", 8, 8 },
+                    { 9, null, 1, "Detroit Pistons", 9, 9 },
+                    { 10, null, 2, "Golden State Warriors", 10, 10 },
+                    { 11, null, 2, "Houston Rockets", 11, 11 },
+                    { 12, null, 1, "Indiana Pacers", 12, 12 },
+                    { 13, null, 2, "Los Angeles Clippers", 13, 13 },
+                    { 14, null, 2, "Los Angeles Lakers", 14, 14 },
+                    { 15, null, 2, "Memphis Grizzlies", 15, 15 },
+                    { 16, null, 1, "Miami Heat", 16, 16 },
+                    { 17, null, 1, "Milwaukee Bucks", 17, 17 },
+                    { 18, null, 2, "Minnesota Timberwolves", 18, 18 },
+                    { 19, null, 2, "New Orleans Pelicans", 19, 19 },
+                    { 20, null, 1, "New York Knicks", 20, 20 },
+                    { 21, null, 2, "Oklahoma City Thunder", 21, 21 },
+                    { 22, null, 1, "Orlando Magic", 22, 22 },
+                    { 23, null, 1, "Philadelphia 76ers", 23, 23 },
+                    { 24, null, 2, "Phoenix Suns", 24, 24 },
+                    { 25, null, 2, "Portland Trail Blazers", 25, 25 },
+                    { 26, null, 2, "Sacramento Kings", 26, 26 },
+                    { 27, null, 2, "San Antonio Spurs", 27, 27 },
+                    { 28, null, 1, "Toronto Raptors", 28, 28 },
+                    { 29, null, 2, "Utah Jazz", 29, 29 },
+                    { 30, null, 1, "Washington Wizards", 30, 30 }
                 });
 
             migrationBuilder.InsertData(
@@ -657,16 +712,35 @@ namespace NBA.DAL.Migrations
                 {
                     { 1, 186, new DateTime(1963, 2, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "Michael", 198, "Jordan", 2, 5, 98 },
                     { 2, 186, new DateTime(1965, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Scottie", 203, "Pippen", 3, 5, 102 },
-                    { 3, 158, new DateTime(1999, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luka", 201, "Dončić", 1, 7, 109 },
-                    { 4, 186, new DateTime(1978, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kobe", 198, "Bryant", 2, 14, 96 },
-                    { 5, 186, new DateTime(1984, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "LeBron", 206, "James", 3, 14, 113 },
-                    { 7, 186, new DateTime(1988, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Derrick", 190, "Rose", 1, 5, 89 },
-                    { 8, 101, new DateTime(1971, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Artūras", 203, "Karnišovas", 4, 5, 108 },
-                    { 9, 64, new DateTime(1978, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dirk", 213, "Nowitzki", 4, 7, 111 },
-                    { 12, 186, new DateTime(1959, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Magic", 206, "Johnson", 1, 14, 100 },
-                    { 13, 186, new DateTime(1972, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Shaquille", 216, "O'Neal", 5, 14, 147 },
-                    { 33, 153, new DateTime(1995, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nikola", 208, "Jokic", 5, 8, 113 },
-                    { 34, 186, new DateTime(1984, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carmelo", 203, "Anthony", 3, 8, 109 }
+                    { 3, 186, new DateTime(1988, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Derrick", 190, "Rose", 1, 5, 89 },
+                    { 4, 101, new DateTime(1971, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Artūras", 203, "Karnišovas", 4, 5, 108 },
+                    { 5, 158, new DateTime(1999, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luka", 201, "Dončić", 1, 7, 109 },
+                    { 6, 64, new DateTime(1978, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Dirk", 213, "Nowitzki", 4, 7, 111 },
+                    { 7, 186, new DateTime(1978, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kobe", 198, "Bryant", 2, 14, 96 },
+                    { 8, 186, new DateTime(1984, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "LeBron", 206, "James", 3, 14, 113 },
+                    { 9, 186, new DateTime(1959, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "Magic", 206, "Johnson", 1, 14, 100 },
+                    { 10, 186, new DateTime(1972, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), "Shaquille", 216, "O'Neal", 5, 14, 147 },
+                    { 11, 153, new DateTime(1995, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nikola", 208, "Jokic", 5, 8, 113 },
+                    { 12, 186, new DateTime(1984, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carmelo", 203, "Anthony", 3, 8, 109 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PlayerAttachments",
+                columns: new[] { "ID", "Path", "PlayerID" },
+                values: new object[,]
+                {
+                    { 1, "/uploads/photos/players/michael-jordan", 1 },
+                    { 2, "/uploads/photos/players/scottie-pippen", 2 },
+                    { 3, "/uploads/photos/players/derrick-rose", 3 },
+                    { 4, "/uploads/photos/players/arturas-karnisovas", 4 },
+                    { 5, "/uploads/photos/players/luka-doncic", 5 },
+                    { 6, "/uploads/photos/players/dirk-nowitzki", 6 },
+                    { 7, "/uploads/photos/players/kobe-bryant", 7 },
+                    { 8, "/uploads/photos/players/lebron-james", 8 },
+                    { 9, "/uploads/photos/players/magic-johnson", 9 },
+                    { 10, "/uploads/photos/players/shaquille-oneal", 10 },
+                    { 11, "/uploads/photos/players/nikola-jokic", 11 },
+                    { 12, "/uploads/photos/players/carmelo-anthony", 12 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -736,7 +810,8 @@ namespace NBA.DAL.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_PlayerAttachments_PlayerID",
                 table: "PlayerAttachments",
-                column: "PlayerID");
+                column: "PlayerID",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Players_CountryID",
@@ -764,9 +839,16 @@ namespace NBA.DAL.Migrations
                 column: "ConferenceID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Teams_TeamAttachmentID",
+                table: "Teams",
+                column: "TeamAttachmentID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Teams_VenueID",
                 table: "Teams",
-                column: "VenueID");
+                column: "VenueID",
+                unique: true,
+                filter: "[VenueID] IS NOT NULL");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Coaches_Teams_TeamID",
@@ -831,6 +913,9 @@ namespace NBA.DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "Conferences");
+
+            migrationBuilder.DropTable(
+                name: "TeamAttachments");
 
             migrationBuilder.DropTable(
                 name: "Venues");

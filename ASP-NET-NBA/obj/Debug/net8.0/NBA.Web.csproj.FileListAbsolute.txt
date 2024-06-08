@@ -596,6 +596,12 @@ C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Co
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Coach\_CoachFilter.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Coach\_CreateOrEdit.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Coach\_IndexTable.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\Create.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\Edit.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\Index.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\_CreateOrEdit.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\_GameFilter.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\_IndexTable.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Player\Create.cshtml.g.cs
@@ -606,11 +612,13 @@ C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Pl
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Player\_IndexTable.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Player\_PlayerFilter.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Team\Details.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Team\Index.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Team\_DetailsTable.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Team\_IndexTable.cshtml.g.cs
+C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Team\_TeamAttachment.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Team\_TeamFilter.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\_ViewStart.cshtml.g.cs
@@ -634,10 +642,3 @@ C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\refint\NBA.Web
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\NBA.Web.pdb
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\NBA.Web.genruntimeconfig.cache
 C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\ref\NBA.Web.dll
-C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
-C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\Create.cshtml.g.cs
-C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\Edit.cshtml.g.cs
-C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\Index.cshtml.g.cs
-C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\_CreateOrEdit.cshtml.g.cs
-C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\_GameFilter.cshtml.g.cs
-C:\Users\renat\Documents\ASP-NET-NBA\ASP-NET-NBA\obj\Debug\net8.0\Razor\Views\Game\_IndexTable.cshtml.g.cs

@@ -8,20 +8,16 @@
             <th>Team name</th>
             <th>Conference</th>
             <th>Venue</th>
-            <th>Coach</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr class="team-row" data-id="@item.ID" onclick="redirectToDetails('@item.ID')">
-                <td>
-                    <img src="@item.Path" class="team-logo" />
-                </td>
+                <td><img src="@item.TeamAttachment?.Path" class="team-logo" /></td>
                 <td>@item.Name</td>
                 <td>@item.Conference?.Name</td>
                 <td>@item.Venue?.Name</td>
-                <td>@(@item.Coach?.FullName ?? "No coach yet!")</td>
             </tr>
         }
     </tbody>

@@ -39,7 +39,7 @@ namespace ASP_NET_NBA.Controllers
 				.Include(p => p.Country)
 				.Include(p => p.Team)
 				.Include(p => p.Position)
-				.Where(p => p.ID == id)
+                .Where(p => p.ID == id)
 				.FirstOrDefault();
 
 			return View(player);
@@ -96,40 +96,6 @@ namespace ASP_NET_NBA.Controllers
 
 			this.FillDropdownValues();
 			return View();
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> UploadAttachment(int playerId, IFormFile? file)
-		{
-			if (file == null)
-			{
-				return BadRequest("No file uploaded.");
-			}
-
-			var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/photos/players");
-			if (!Directory.Exists(uploads))
-			{
-				Directory.CreateDirectory(uploads);
-			}
-
-			var filePath = Path.Combine(uploads, file.FileName);
-
-			using (var stream = new FileStream(filePath, FileMode.Create))
-			{
-				await file.CopyToAsync(stream);
-			}
-
-			var attachment = new PlayerAttachment()
-			{
-				PlayerID = playerId,
-				Path = filePath
-			};
-
-			this._dbContext.PlayerAttachments.Add(attachment);
-			this._dbContext.SaveChanges();
-
-
-			return Ok();
 		}
 
 		[HttpPost]

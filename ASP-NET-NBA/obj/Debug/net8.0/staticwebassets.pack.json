@@ -373,6 +373,58 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\arturas-karnisovas.jpg",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\arturas-karnisovas.jpg"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\arturas-karnisovas.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\arturas-karnisovas.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\carmelo-anthony.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\carmelo-anthony.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\derrick-rose.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\derrick-rose.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\dirk-nowitzki.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\dirk-nowitzki.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\kobe-bryant.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\kobe-bryant.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\lebron-james.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\lebron-james.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\luka-doncic.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\luka-doncic.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\magic-johnson.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\magic-johnson.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\michael-jordan.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\michael-jordan.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\nikola-jokic.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\nikola-jokic.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\scottie-pippen.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\scottie-pippen.png"
+    },
+    {
+      "Id": "C:\\Users\\renat\\Documents\\ASP-NET-NBA\\ASP-NET-NBA\\wwwroot\\uploads\\photos\\players\\shaquille-oneal.png",
+      "PackagePath": "staticwebassets\\uploads\\photos\\players\\shaquille-oneal.png"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.NBA.Web.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

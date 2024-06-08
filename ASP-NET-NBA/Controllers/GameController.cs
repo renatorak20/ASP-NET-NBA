@@ -38,9 +38,12 @@ namespace ASP_NET_NBA.Controllers
 			var team = _dbContext.Teams
 				.Include(p => p.Venue)
 				.Include(p => p.Conference)
-				.Include(p => p.Coach)
 				.Where(p => p.ID == id)
 				.FirstOrDefault();
+
+            var coachesCount = _dbContext.Coaches.
+                Include(c => c.TeamID)
+                .Where(c => c.TeamID == id).Count();
 
 			if (team == null)
 			{
@@ -56,7 +59,8 @@ namespace ASP_NET_NBA.Controllers
 			var viewModel = new TeamDetailsViewModel
 			{
 				Team = team,
-				Players = players
+				Players = players,
+                CoachesCount = coachesCount
 			};
 
 			return View(viewModel);

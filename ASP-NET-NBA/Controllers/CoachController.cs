@@ -55,26 +55,9 @@ namespace ASP_NET_NBA.Controllers
         {
             if (ModelState.IsValid)
             {
-				var team = _dbContext.Teams
-					.Include(t => t.Coach)
-					.Where(t => t.ID == model.TeamID)
-					.FirstOrDefault();
-
-				if (team?.CoachID != null)
-				{
-					return BadRequest("Team already has dedicated coach!");
-				}
-
-                _dbContext.Coaches.Add(model);
-                _dbContext.SaveChanges();
-
-				team.CoachID = model.ID;
-				var ok = await this.TryUpdateModelAsync(team);
-				if (ok)
-				{
-					_dbContext.SaveChanges();
-				}
-                return RedirectToAction(nameof(Index));
+				_dbContext.Coaches.Add(model);
+				_dbContext.SaveChanges();
+				return RedirectToAction(nameof(Index));
             }
             else
             {
@@ -105,53 +88,11 @@ namespace ASP_NET_NBA.Controllers
 			{
 				_dbContext.SaveChanges();
 
-				if (coach.TeamID != null)
-				{
-                    var team = _dbContext.Teams.Single(t => t.ID == coach.TeamID);
-                    team.CoachID = id;
-
-                    await this.TryUpdateModelAsync(team);
-                }
-
 				return RedirectToAction(nameof(Index));
 			}
 
 			this.FillDropdownValues();
 			return View();
-		}
-
-		[HttpPost]
-		public async Task<IActionResult> UploadAttachment(int coachId, IFormFile? file)
-		{
-			if (file == null)
-			{
-				return BadRequest("No file uploaded.");
-			}
-
-			var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/photos/coaches");
-			if (!Directory.Exists(uploads))
-			{
-				Directory.CreateDirectory(uploads);
-			}
-
-			var filePath = Path.Combine(uploads, file.FileName);
-
-			using (var stream = new FileStream(filePath, FileMode.Create))
-			{
-				await file.CopyToAsync(stream);
-			}
-
-			var attachment = new PlayerAttachment()
-			{
-				PlayerID = coachId,
-				Path = filePath
-			};
-
-			this._dbContext.PlayerAttachments.Add(attachment);
-			this._dbContext.SaveChanges();
-
-
-			return Ok();
 		}
 
 		[HttpPost]
@@ -185,18 +126,6 @@ namespace ASP_NET_NBA.Controllers
 
 			_dbContext.Coaches.Remove(coachToDelete);
 			_dbContext.SaveChanges();
-
-			var team = _dbContext.Teams.Include(t => t.Coach).Where(t => t.CoachID == id).FirstOrDefault();
-			if (team != null)
-			{
-				team.CoachID = null;
-
-				var ok = await this.TryUpdateModelAsync(team);
-				if (ok)
-				{
-					_dbContext.SaveChanges();
-				}
-			}
 
 			return RedirectToAction(nameof(Index));
 		}

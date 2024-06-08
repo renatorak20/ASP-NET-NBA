@@ -2,19 +2,19 @@
 @model List<Player>
 
 <table style="margin-top: 20px;" id="tablica" class="table table-condensed">
-	<thead>
-		<tr>
-			<th>Player</th>
-			<th>Team</th>
-			<th>Country</th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
+    <thead>
+        <tr>
+            <th>Player</th>
+            <th>Team</th>
+            <th>Country</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="team-row" data-id="@item.ID" onclick="redirectToDetails('@item.ID')">
 				<td>
 					<a asp-action="Details" asp-route-id="@item.ID">@item.FullName</a>
 				</td>
@@ -30,7 +30,16 @@
 						<a asp-action="Delete" asp-route-id="@item.ID" style="color:white">Delete</a>
 					</button>
 				</td>
-			</tr>
-		}
-	</tbody>
+            </tr>
+        }
+    </tbody>
 </table>
+
+
+
+<script>
+    function redirectToDetails(id) {
+        var url = '@Url.Action("Details", "Player")/' + id;
+        window.location.href = url;
+    }
+</script>

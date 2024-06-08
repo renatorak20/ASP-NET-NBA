@@ -1,0 +1,13 @@
+﻿@model NBA.Model.TeamAttachment
+
+<div>
+    @if (Model != null)
+    {
+        <img src="@Model.Path" alt="Team Logo" class="team-logo" />
+        <button type="button" onclick="deleteAttachment(@Model.ID)">Delete</button>
+    }
+    else
+    {
+        <p>No attachment available.</p>
+    }
+</div>

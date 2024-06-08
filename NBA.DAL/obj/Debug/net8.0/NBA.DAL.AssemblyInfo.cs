@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NBA.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+86de434eb390c5932db51c1464dd0c1585f297b6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+18562195b9b24508821166d0f99877b5b869baf2")]
 [assembly: System.Reflection.AssemblyProductAttribute("NBA.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NBA.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

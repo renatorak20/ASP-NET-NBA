@@ -18,14 +18,16 @@ namespace NBA.Model
         public string LastName { get; set; }
 
 		[ForeignKey(nameof(Position))]
-		public int? PositionID { get; set; }
+		[Required(ErrorMessage = "Position must be selected!")]
+		public int PositionID { get; set; }
 		public Position? Position { get; set; }
 
 		[Required(ErrorMessage = "Date of birth is required")]
 		public DateTime DateOfBirth { get; set; }
 
 		[ForeignKey(nameof(Country))]
-		public int? CountryID { get; set; }
+		[Required(ErrorMessage = "Country must be selected!")]
+		public int CountryID { get; set; }
 		public Country? Country { get; set; }
 
 		[ForeignKey(nameof(Team))]
@@ -38,9 +40,8 @@ namespace NBA.Model
         [Range(1, 200, ErrorMessage = "Please enter a number between 1 and 200")]
         public int Weight { get; set; }
 		public string FullName => $"{FirstName} {LastName}";
-		public virtual ICollection<PlayerAttachment>? Attachments { get; set; }
 
-		public int? GetAge()
+        public int? GetAge()
 		{
 			var today = DateTime.Today;
 			var age = today.Year - DateOfBirth.Year;

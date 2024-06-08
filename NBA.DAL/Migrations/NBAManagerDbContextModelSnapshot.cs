@@ -232,7 +232,7 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CountryID")
+                    b.Property<int>("CountryID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -247,6 +247,7 @@ namespace NBA.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TeamID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -256,6 +257,26 @@ namespace NBA.DAL.Migrations
                     b.HasIndex("TeamID");
 
                     b.ToTable("Coaches");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1963, 2, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Phil",
+                            LastName = "Jackson",
+                            TeamID = 14
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CountryID = 186,
+                            DateOfBirth = new DateTime(1963, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Cool",
+                            LastName = "Coach",
+                            TeamID = 7
+                        });
                 });
 
             modelBuilder.Entity("NBA.Model.Conference", b =>
@@ -1316,6 +1337,28 @@ namespace NBA.DAL.Migrations
                     b.HasIndex("VenueID");
 
                     b.ToTable("Games");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            AwayScore = 89,
+                            DateOfGame = new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HomeScore = 125,
+                            TeamAwayID = 2,
+                            TeamHomeID = 7,
+                            VenueID = 7
+                        },
+                        new
+                        {
+                            ID = 2,
+                            AwayScore = 86,
+                            DateOfGame = new DateTime(2013, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HomeScore = 77,
+                            TeamAwayID = 3,
+                            TeamHomeID = 8,
+                            VenueID = 9
+                        });
                 });
 
             modelBuilder.Entity("NBA.Model.Player", b =>
@@ -1326,7 +1369,7 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CountryID")
+                    b.Property<int>("CountryID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -1343,7 +1386,7 @@ namespace NBA.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PositionID")
+                    b.Property<int>("PositionID")
                         .HasColumnType("int");
 
                     b.Property<int?>("TeamID")
@@ -1389,7 +1432,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 7,
+                            ID = 3,
                             CountryID = 186,
                             DateOfBirth = new DateTime(1988, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Derrick",
@@ -1401,7 +1444,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 8,
+                            ID = 4,
                             CountryID = 101,
                             DateOfBirth = new DateTime(1971, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Artūras",
@@ -1413,9 +1456,9 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 3,
+                            ID = 5,
                             CountryID = 158,
-                            DateOfBirth = new DateTime(1999, 2, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1999, 1, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Luka",
                             Height = 201,
                             LastName = "Dončić",
@@ -1425,7 +1468,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 9,
+                            ID = 6,
                             CountryID = 64,
                             DateOfBirth = new DateTime(1978, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Dirk",
@@ -1437,7 +1480,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 4,
+                            ID = 7,
                             CountryID = 186,
                             DateOfBirth = new DateTime(1978, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Kobe",
@@ -1449,7 +1492,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 5,
+                            ID = 8,
                             CountryID = 186,
                             DateOfBirth = new DateTime(1984, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "LeBron",
@@ -1461,7 +1504,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 12,
+                            ID = 9,
                             CountryID = 186,
                             DateOfBirth = new DateTime(1959, 8, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Magic",
@@ -1473,7 +1516,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 13,
+                            ID = 10,
                             CountryID = 186,
                             DateOfBirth = new DateTime(1972, 3, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Shaquille",
@@ -1485,7 +1528,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 33,
+                            ID = 11,
                             CountryID = 153,
                             DateOfBirth = new DateTime(1995, 2, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Nikola",
@@ -1497,7 +1540,7 @@ namespace NBA.DAL.Migrations
                         },
                         new
                         {
-                            ID = 34,
+                            ID = 12,
                             CountryID = 186,
                             DateOfBirth = new DateTime(1984, 5, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Carmelo",
@@ -1507,28 +1550,6 @@ namespace NBA.DAL.Migrations
                             TeamID = 8,
                             Weight = 109
                         });
-                });
-
-            modelBuilder.Entity("NBA.Model.PlayerAttachment", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<string>("Path")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PlayerID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("PlayerID");
-
-                    b.ToTable("PlayerAttachments");
                 });
 
             modelBuilder.Entity("NBA.Model.Position", b =>
@@ -1583,9 +1604,6 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int?>("CoachID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("ConferenceID")
                         .HasColumnType("int");
 
@@ -1593,19 +1611,21 @@ namespace NBA.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Path")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("TeamAttachmentID")
+                        .HasColumnType("int");
 
                     b.Property<int?>("VenueID")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("CoachID");
-
                     b.HasIndex("ConferenceID");
 
-                    b.HasIndex("VenueID");
+                    b.HasIndex("TeamAttachmentID");
+
+                    b.HasIndex("VenueID")
+                        .IsUnique()
+                        .HasFilter("[VenueID] IS NOT NULL");
 
                     b.ToTable("Teams");
 
@@ -1615,7 +1635,7 @@ namespace NBA.DAL.Migrations
                             ID = 1,
                             ConferenceID = 1,
                             Name = "Atlanta Hawks",
-                            Path = "/images/teams/1.png",
+                            TeamAttachmentID = 1,
                             VenueID = 1
                         },
                         new
@@ -1623,7 +1643,7 @@ namespace NBA.DAL.Migrations
                             ID = 2,
                             ConferenceID = 1,
                             Name = "Boston Celtics",
-                            Path = "/images/teams/2.png",
+                            TeamAttachmentID = 2,
                             VenueID = 2
                         },
                         new
@@ -1631,7 +1651,7 @@ namespace NBA.DAL.Migrations
                             ID = 3,
                             ConferenceID = 1,
                             Name = "Brooklyn Nets",
-                            Path = "/images/teams/3.png",
+                            TeamAttachmentID = 3,
                             VenueID = 3
                         },
                         new
@@ -1639,7 +1659,7 @@ namespace NBA.DAL.Migrations
                             ID = 4,
                             ConferenceID = 1,
                             Name = "Charlotte Hornets",
-                            Path = "/images/teams/4.png",
+                            TeamAttachmentID = 4,
                             VenueID = 4
                         },
                         new
@@ -1647,7 +1667,7 @@ namespace NBA.DAL.Migrations
                             ID = 5,
                             ConferenceID = 1,
                             Name = "Chicago Bulls",
-                            Path = "/images/teams/5.png",
+                            TeamAttachmentID = 5,
                             VenueID = 5
                         },
                         new
@@ -1655,7 +1675,7 @@ namespace NBA.DAL.Migrations
                             ID = 6,
                             ConferenceID = 1,
                             Name = "Cleveland Cavaliers",
-                            Path = "/images/teams/6.png",
+                            TeamAttachmentID = 6,
                             VenueID = 6
                         },
                         new
@@ -1663,7 +1683,7 @@ namespace NBA.DAL.Migrations
                             ID = 7,
                             ConferenceID = 2,
                             Name = "Dallas Mavericks",
-                            Path = "/images/teams/7.png",
+                            TeamAttachmentID = 7,
                             VenueID = 7
                         },
                         new
@@ -1671,7 +1691,7 @@ namespace NBA.DAL.Migrations
                             ID = 8,
                             ConferenceID = 2,
                             Name = "Denver Nuggets",
-                            Path = "/images/teams/8.png",
+                            TeamAttachmentID = 8,
                             VenueID = 8
                         },
                         new
@@ -1679,7 +1699,7 @@ namespace NBA.DAL.Migrations
                             ID = 9,
                             ConferenceID = 1,
                             Name = "Detroit Pistons",
-                            Path = "/images/teams/9.png",
+                            TeamAttachmentID = 9,
                             VenueID = 9
                         },
                         new
@@ -1687,7 +1707,7 @@ namespace NBA.DAL.Migrations
                             ID = 10,
                             ConferenceID = 2,
                             Name = "Golden State Warriors",
-                            Path = "/images/teams/10.png",
+                            TeamAttachmentID = 10,
                             VenueID = 10
                         },
                         new
@@ -1695,7 +1715,7 @@ namespace NBA.DAL.Migrations
                             ID = 11,
                             ConferenceID = 2,
                             Name = "Houston Rockets",
-                            Path = "/images/teams/11.png",
+                            TeamAttachmentID = 11,
                             VenueID = 11
                         },
                         new
@@ -1703,7 +1723,7 @@ namespace NBA.DAL.Migrations
                             ID = 12,
                             ConferenceID = 1,
                             Name = "Indiana Pacers",
-                            Path = "/images/teams/12.png",
+                            TeamAttachmentID = 12,
                             VenueID = 12
                         },
                         new
@@ -1711,7 +1731,7 @@ namespace NBA.DAL.Migrations
                             ID = 13,
                             ConferenceID = 2,
                             Name = "Los Angeles Clippers",
-                            Path = "/images/teams/13.png",
+                            TeamAttachmentID = 13,
                             VenueID = 13
                         },
                         new
@@ -1719,7 +1739,7 @@ namespace NBA.DAL.Migrations
                             ID = 14,
                             ConferenceID = 2,
                             Name = "Los Angeles Lakers",
-                            Path = "/images/teams/14.png",
+                            TeamAttachmentID = 14,
                             VenueID = 14
                         },
                         new
@@ -1727,7 +1747,7 @@ namespace NBA.DAL.Migrations
                             ID = 15,
                             ConferenceID = 2,
                             Name = "Memphis Grizzlies",
-                            Path = "/images/teams/15.png",
+                            TeamAttachmentID = 15,
                             VenueID = 15
                         },
                         new
@@ -1735,7 +1755,7 @@ namespace NBA.DAL.Migrations
                             ID = 16,
                             ConferenceID = 1,
                             Name = "Miami Heat",
-                            Path = "/images/teams/16.png",
+                            TeamAttachmentID = 16,
                             VenueID = 16
                         },
                         new
@@ -1743,7 +1763,7 @@ namespace NBA.DAL.Migrations
                             ID = 17,
                             ConferenceID = 1,
                             Name = "Milwaukee Bucks",
-                            Path = "/images/teams/17.png",
+                            TeamAttachmentID = 17,
                             VenueID = 17
                         },
                         new
@@ -1751,7 +1771,7 @@ namespace NBA.DAL.Migrations
                             ID = 18,
                             ConferenceID = 2,
                             Name = "Minnesota Timberwolves",
-                            Path = "/images/teams/18.png",
+                            TeamAttachmentID = 18,
                             VenueID = 18
                         },
                         new
@@ -1759,7 +1779,7 @@ namespace NBA.DAL.Migrations
                             ID = 19,
                             ConferenceID = 2,
                             Name = "New Orleans Pelicans",
-                            Path = "/images/teams/19.png",
+                            TeamAttachmentID = 19,
                             VenueID = 19
                         },
                         new
@@ -1767,7 +1787,7 @@ namespace NBA.DAL.Migrations
                             ID = 20,
                             ConferenceID = 1,
                             Name = "New York Knicks",
-                            Path = "/images/teams/20.png",
+                            TeamAttachmentID = 20,
                             VenueID = 20
                         },
                         new
@@ -1775,7 +1795,7 @@ namespace NBA.DAL.Migrations
                             ID = 21,
                             ConferenceID = 2,
                             Name = "Oklahoma City Thunder",
-                            Path = "/images/teams/21.png",
+                            TeamAttachmentID = 21,
                             VenueID = 21
                         },
                         new
@@ -1783,7 +1803,7 @@ namespace NBA.DAL.Migrations
                             ID = 22,
                             ConferenceID = 1,
                             Name = "Orlando Magic",
-                            Path = "/images/teams/22.png",
+                            TeamAttachmentID = 22,
                             VenueID = 22
                         },
                         new
@@ -1791,7 +1811,7 @@ namespace NBA.DAL.Migrations
                             ID = 23,
                             ConferenceID = 1,
                             Name = "Philadelphia 76ers",
-                            Path = "/images/teams/23.png",
+                            TeamAttachmentID = 23,
                             VenueID = 23
                         },
                         new
@@ -1799,7 +1819,7 @@ namespace NBA.DAL.Migrations
                             ID = 24,
                             ConferenceID = 2,
                             Name = "Phoenix Suns",
-                            Path = "/images/teams/24.png",
+                            TeamAttachmentID = 24,
                             VenueID = 24
                         },
                         new
@@ -1807,7 +1827,7 @@ namespace NBA.DAL.Migrations
                             ID = 25,
                             ConferenceID = 2,
                             Name = "Portland Trail Blazers",
-                            Path = "/images/teams/25.png",
+                            TeamAttachmentID = 25,
                             VenueID = 25
                         },
                         new
@@ -1815,7 +1835,7 @@ namespace NBA.DAL.Migrations
                             ID = 26,
                             ConferenceID = 2,
                             Name = "Sacramento Kings",
-                            Path = "/images/teams/26.png",
+                            TeamAttachmentID = 26,
                             VenueID = 26
                         },
                         new
@@ -1823,7 +1843,7 @@ namespace NBA.DAL.Migrations
                             ID = 27,
                             ConferenceID = 2,
                             Name = "San Antonio Spurs",
-                            Path = "/images/teams/27.png",
+                            TeamAttachmentID = 27,
                             VenueID = 27
                         },
                         new
@@ -1831,7 +1851,7 @@ namespace NBA.DAL.Migrations
                             ID = 28,
                             ConferenceID = 1,
                             Name = "Toronto Raptors",
-                            Path = "/images/teams/28.png",
+                            TeamAttachmentID = 28,
                             VenueID = 28
                         },
                         new
@@ -1839,7 +1859,7 @@ namespace NBA.DAL.Migrations
                             ID = 29,
                             ConferenceID = 2,
                             Name = "Utah Jazz",
-                            Path = "/images/teams/29.png",
+                            TeamAttachmentID = 29,
                             VenueID = 29
                         },
                         new
@@ -1847,8 +1867,177 @@ namespace NBA.DAL.Migrations
                             ID = 30,
                             ConferenceID = 1,
                             Name = "Washington Wizards",
-                            Path = "/images/teams/30.png",
+                            TeamAttachmentID = 30,
                             VenueID = 30
+                        });
+                });
+
+            modelBuilder.Entity("NBA.Model.TeamAttachment", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("TeamAttachments");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Path = "/images/teams/1.png"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Path = "/images/teams/2.png"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Path = "/images/teams/3.png"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Path = "/images/teams/4.png"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Path = "/images/teams/5.png"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Path = "/images/teams/6.png"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Path = "/images/teams/7.png"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Path = "/images/teams/8.png"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Path = "/images/teams/9.png"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            Path = "/images/teams/10.png"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            Path = "/images/teams/11.png"
+                        },
+                        new
+                        {
+                            ID = 12,
+                            Path = "/images/teams/12.png"
+                        },
+                        new
+                        {
+                            ID = 13,
+                            Path = "/images/teams/13.png"
+                        },
+                        new
+                        {
+                            ID = 14,
+                            Path = "/images/teams/14.png"
+                        },
+                        new
+                        {
+                            ID = 15,
+                            Path = "/images/teams/15.png"
+                        },
+                        new
+                        {
+                            ID = 16,
+                            Path = "/images/teams/16.png"
+                        },
+                        new
+                        {
+                            ID = 17,
+                            Path = "/images/teams/17.png"
+                        },
+                        new
+                        {
+                            ID = 18,
+                            Path = "/images/teams/18.png"
+                        },
+                        new
+                        {
+                            ID = 19,
+                            Path = "/images/teams/19.png"
+                        },
+                        new
+                        {
+                            ID = 20,
+                            Path = "/images/teams/20.png"
+                        },
+                        new
+                        {
+                            ID = 21,
+                            Path = "/images/teams/21.png"
+                        },
+                        new
+                        {
+                            ID = 22,
+                            Path = "/images/teams/22.png"
+                        },
+                        new
+                        {
+                            ID = 23,
+                            Path = "/images/teams/23.png"
+                        },
+                        new
+                        {
+                            ID = 24,
+                            Path = "/images/teams/24.png"
+                        },
+                        new
+                        {
+                            ID = 25,
+                            Path = "/images/teams/25.png"
+                        },
+                        new
+                        {
+                            ID = 26,
+                            Path = "/images/teams/26.png"
+                        },
+                        new
+                        {
+                            ID = 27,
+                            Path = "/images/teams/27.png"
+                        },
+                        new
+                        {
+                            ID = 28,
+                            Path = "/images/teams/28.png"
+                        },
+                        new
+                        {
+                            ID = 29,
+                            Path = "/images/teams/29.png"
+                        },
+                        new
+                        {
+                            ID = 30,
+                            Path = "/images/teams/30.png"
                         });
                 });
 
@@ -2110,11 +2299,15 @@ namespace NBA.DAL.Migrations
                 {
                     b.HasOne("NBA.Model.Country", "Country")
                         .WithMany("Coaches")
-                        .HasForeignKey("CountryID");
+                        .HasForeignKey("CountryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NBA.Model.Team", "Team")
                         .WithMany()
-                        .HasForeignKey("TeamID");
+                        .HasForeignKey("TeamID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Country");
 
@@ -2146,11 +2339,15 @@ namespace NBA.DAL.Migrations
                 {
                     b.HasOne("NBA.Model.Country", "Country")
                         .WithMany("Players")
-                        .HasForeignKey("CountryID");
+                        .HasForeignKey("CountryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NBA.Model.Position", "Position")
                         .WithMany("Players")
-                        .HasForeignKey("PositionID");
+                        .HasForeignKey("PositionID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NBA.Model.Team", "Team")
                         .WithMany("Players")
@@ -2163,34 +2360,23 @@ namespace NBA.DAL.Migrations
                     b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("NBA.Model.PlayerAttachment", b =>
-                {
-                    b.HasOne("NBA.Model.Player", "Player")
-                        .WithMany("Attachments")
-                        .HasForeignKey("PlayerID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Player");
-                });
-
             modelBuilder.Entity("NBA.Model.Team", b =>
                 {
-                    b.HasOne("NBA.Model.Coach", "Coach")
-                        .WithMany()
-                        .HasForeignKey("CoachID");
-
                     b.HasOne("NBA.Model.Conference", "Conference")
                         .WithMany()
                         .HasForeignKey("ConferenceID");
 
-                    b.HasOne("NBA.Model.Venue", "Venue")
-                        .WithMany("Teams")
-                        .HasForeignKey("VenueID");
+                    b.HasOne("NBA.Model.TeamAttachment", "TeamAttachment")
+                        .WithMany()
+                        .HasForeignKey("TeamAttachmentID");
 
-                    b.Navigation("Coach");
+                    b.HasOne("NBA.Model.Venue", "Venue")
+                        .WithOne("Teams")
+                        .HasForeignKey("NBA.Model.Team", "VenueID");
 
                     b.Navigation("Conference");
+
+                    b.Navigation("TeamAttachment");
 
                     b.Navigation("Venue");
                 });
@@ -2200,11 +2386,6 @@ namespace NBA.DAL.Migrations
                     b.Navigation("Coaches");
 
                     b.Navigation("Players");
-                });
-
-            modelBuilder.Entity("NBA.Model.Player", b =>
-                {
-                    b.Navigation("Attachments");
                 });
 
             modelBuilder.Entity("NBA.Model.Position", b =>
@@ -2219,7 +2400,8 @@ namespace NBA.DAL.Migrations
 
             modelBuilder.Entity("NBA.Model.Venue", b =>
                 {
-                    b.Navigation("Teams");
+                    b.Navigation("Teams")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

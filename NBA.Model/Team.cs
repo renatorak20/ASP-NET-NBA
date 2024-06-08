@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,10 +23,9 @@ namespace NBA.Model
         public int? ConferenceID { get; set; }
         public Conference? Conference { get; set; }
 
-        [ForeignKey(nameof(Coach))]
-        public int? CoachID { get; set; }
-        public Coach? Coach { get; set; }
-		public string? Path { get; set; }
-		public virtual ICollection<Player>? Players { get; set; }
+		[ForeignKey(nameof(TeamAttachment))]
+        public int? TeamAttachmentID { get; set; }
+        public TeamAttachment TeamAttachment { get; set; }
+        public virtual ICollection<Player>? Players { get; set; }
 	}
 }

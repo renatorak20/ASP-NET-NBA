@@ -1,4 +1,5 @@
-﻿@model NBA.Model.Player
+﻿@using NBA.Model
+@model NBA.Model.Player
 
 @{
 	ViewData["Title"] = "Editing Player";
@@ -17,11 +18,5 @@
 			<input type="hidden" asp-for="ID" />
 			<partial name="_CreateOrEdit" />
 		</form>
-	</div>
-	<div class="col-md-6">
-		<h5>Photo</h5>
-		<form id="photosUpload" asp-controller="Player" asp-action="UploadAttachment"
-			  asp-route-playerId="@Model.ID"
-			  enctype="multipart/form-data" class="dropzone"></form>
 	</div>
 </div>

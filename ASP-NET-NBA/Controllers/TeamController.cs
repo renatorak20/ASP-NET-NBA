@@ -24,8 +24,10 @@ namespace ASP_NET_NBA.Controllers
             var teamQuery = _dbContext.Teams
                 .Include(p => p.Venue)
                 .Include(p => p.Conference)
-                .Include(p => p.Coach)
+                .Include(p => p.TeamAttachment)
                 .AsQueryable();
+
+            var a = _dbContext.TeamAttachments;
 
             var model = teamQuery.ToList();
             this.FillDropdownValues();
@@ -38,8 +40,8 @@ namespace ASP_NET_NBA.Controllers
 			var team = _dbContext.Teams
 				.Include(p => p.Venue)
 				.Include(p => p.Conference)
-				.Include(p => p.Coach)
-				.Where(p => p.ID == id)
+                .Include(p => p.TeamAttachment)
+                .Where(p => p.ID == id)
 				.FirstOrDefault();
 
 			if (team == null)
@@ -53,10 +55,16 @@ namespace ASP_NET_NBA.Controllers
 				.Where(p => p.TeamID == id)
 				.ToList();
 
+            var coachesCount = _dbContext.Coaches
+                .Include(c => c.Team)
+                .Where(c => c.TeamID == id)
+                .Count();
+
 			var viewModel = new TeamDetailsViewModel
 			{
 				Team = team,
-				Players = players
+				Players = players,
+                CoachesCount = coachesCount
 			};
 
 			return View(viewModel);
@@ -68,7 +76,7 @@ namespace ASP_NET_NBA.Controllers
         {
             filterTeam ??= new TeamFilterModel();
 
-            var teamQuery = _dbContext.Teams.Include(p => p.Venue).Include(p => p.Coach).Include(p => p.Conference).AsQueryable();
+            var teamQuery = _dbContext.Teams.Include(p => p.Venue).Include(p => p.TeamAttachment).Include(p => p.Conference).AsQueryable();
             if (!string.IsNullOrWhiteSpace(filterTeam.Venue))
                 teamQuery = teamQuery.Where(p => (p.Venue.Name).Contains(filterTeam.Venue, StringComparison.CurrentCultureIgnoreCase));
 
@@ -99,5 +107,5 @@ namespace ASP_NET_NBA.Controllers
 
             ViewBag.PossibleConferences = conferences;
         }
-    }
+	}
 }

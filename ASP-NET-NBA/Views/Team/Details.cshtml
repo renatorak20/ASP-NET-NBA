@@ -7,7 +7,7 @@
 
 <h2>Details</h2>
 
-@if (Model.Team != null)
+@if (Model != null)
 {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -31,12 +31,12 @@
                 <dd>@Model?.Team.Venue?.Name</dd>
                 <dt>Venue City</dt>
                 <dd>@Model?.Team.Venue?.City</dd>
-                <dt>Coach</dt>
-                <dd>@(@Model?.Team.Coach?.FullName ?? "No coach yet!")</dd>
+                <dt>Coaches</dt>
+                <dd>@(@Model?.CoachesCount.ToString() ?? "No coach yet!")</dd>
             </dl>
         </div>
         <div class="col-md-4">
-            <img src="@Model?.Team.Path" alt="Team Logo" class="img-fluid" style="max-width:100%; height:auto; margin-top:40px;">
+            <img src="@Model?.Team.TeamAttachment?.Path" alt="Team Logo" class="img-fluid" style="max-width:100%; height:auto; margin-top:40px;">
         </div>
     </div>
 

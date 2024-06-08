@@ -15,7 +15,7 @@ namespace NBA.DAL
 		public DbSet<Venue> Venues { get; set; }
 		public DbSet<Coach> Coaches { get; set; }
 		public DbSet<Conference> Conferences { get; set; }
-		public DbSet<PlayerAttachment> PlayerAttachments { get; set; }
+		public DbSet<TeamAttachment> TeamAttachments { get; set; }
 		public DbSet<Game> Games { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -32,40 +32,85 @@ namespace NBA.DAL
 				new Position { ID = 4, Name = "Power Forward (PF)" },
 				new Position { ID = 5, Name = "Center (C)" }
 			);
-			modelBuilder.Entity<Team>().HasData(
-				new Team { ID = 1, Name = "Atlanta Hawks", VenueID = 1, ConferenceID = 1, Path = "/images/teams/1.png" },
-				new Team { ID = 2, Name = "Boston Celtics", VenueID = 2, ConferenceID = 1, Path = "/images/teams/2.png" },
-				new Team { ID = 3, Name = "Brooklyn Nets", VenueID = 3, ConferenceID = 1, Path = "/images/teams/3.png" },
-				new Team { ID = 4, Name = "Charlotte Hornets", VenueID = 4, ConferenceID = 1, Path = "/images/teams/4.png" },
-				new Team { ID = 5, Name = "Chicago Bulls", VenueID = 5, ConferenceID = 1, Path = "/images/teams/5.png" },
-				new Team { ID = 6, Name = "Cleveland Cavaliers", VenueID = 6, ConferenceID = 1, Path = "/images/teams/6.png" },
-				new Team { ID = 7, Name = "Dallas Mavericks", VenueID = 7, ConferenceID = 2, Path = "/images/teams/7.png" },
-				new Team { ID = 8, Name = "Denver Nuggets", VenueID = 8, ConferenceID = 2, Path = "/images/teams/8.png" },
-				new Team { ID = 9, Name = "Detroit Pistons", VenueID = 9, ConferenceID = 1, Path = "/images/teams/9.png" },
-				new Team { ID = 10, Name = "Golden State Warriors", VenueID = 10, ConferenceID = 2, Path = "/images/teams/10.png" },
-				new Team { ID = 11, Name = "Houston Rockets", VenueID = 11, ConferenceID = 2, Path = "/images/teams/11.png" },
-				new Team { ID = 12, Name = "Indiana Pacers", VenueID = 12, ConferenceID = 1, Path = "/images/teams/12.png" },
-				new Team { ID = 13, Name = "Los Angeles Clippers", VenueID = 13, ConferenceID = 2, Path = "/images/teams/13.png" },
-				new Team { ID = 14, Name = "Los Angeles Lakers", VenueID = 14, ConferenceID = 2, Path = "/images/teams/14.png" },
-				new Team { ID = 15, Name = "Memphis Grizzlies", VenueID = 15, ConferenceID = 2, Path = "/images/teams/15.png" },
-				new Team { ID = 16, Name = "Miami Heat", VenueID = 16, ConferenceID = 1, Path = "/images/teams/16.png" },
-				new Team { ID = 17, Name = "Milwaukee Bucks", VenueID = 17, ConferenceID = 1, Path = "/images/teams/17.png" },
-				new Team { ID = 18, Name = "Minnesota Timberwolves", VenueID = 18, ConferenceID = 2, Path = "/images/teams/18.png" },
-				new Team { ID = 19, Name = "New Orleans Pelicans", VenueID = 19, ConferenceID = 2, Path = "/images/teams/19.png" },
-				new Team { ID = 20, Name = "New York Knicks", VenueID = 20, ConferenceID = 1, Path = "/images/teams/20.png" },
-				new Team { ID = 21, Name = "Oklahoma City Thunder", VenueID = 21, ConferenceID = 2, Path = "/images/teams/21.png" },
-				new Team { ID = 22, Name = "Orlando Magic", VenueID = 22, ConferenceID = 1, Path = "/images/teams/22.png" },
-				new Team { ID = 23, Name = "Philadelphia 76ers", VenueID = 23, ConferenceID = 1, Path = "/images/teams/23.png" },
-				new Team { ID = 24, Name = "Phoenix Suns", VenueID = 24, ConferenceID = 2, Path = "/images/teams/24.png" },
-				new Team { ID = 25, Name = "Portland Trail Blazers", VenueID = 25, ConferenceID = 2, Path = "/images/teams/25.png" },
-				new Team { ID = 26, Name = "Sacramento Kings", VenueID = 26, ConferenceID = 2, Path = "/images/teams/26.png" },
-				new Team { ID = 27, Name = "San Antonio Spurs", VenueID = 27, ConferenceID = 2, Path = "/images/teams/27.png" },
-				new Team { ID = 28, Name = "Toronto Raptors", VenueID = 28, ConferenceID = 1, Path = "/images/teams/28.png" },
-				new Team { ID = 29, Name = "Utah Jazz", VenueID = 29, ConferenceID = 2, Path = "/images/teams/29.png" },
-				new Team { ID = 30, Name = "Washington Wizards", VenueID = 30, ConferenceID = 1, Path = "/images/teams/30.png" }
+
+            modelBuilder.Entity<TeamAttachment>().HasData(
+                new TeamAttachment { ID = 1, Path = "/images/teams/1.png" },
+                new TeamAttachment { ID = 2, Path = "/images/teams/2.png" },
+                new TeamAttachment { ID = 3, Path = "/images/teams/3.png" },
+                new TeamAttachment { ID = 4, Path = "/images/teams/4.png" },
+                new TeamAttachment { ID = 5, Path = "/images/teams/5.png" },
+                new TeamAttachment { ID = 6, Path = "/images/teams/6.png" },
+                new TeamAttachment { ID = 7, Path = "/images/teams/7.png" },
+                new TeamAttachment { ID = 8, Path = "/images/teams/8.png" },
+                new TeamAttachment { ID = 9, Path = "/images/teams/9.png" },
+                new TeamAttachment { ID = 10, Path = "/images/teams/10.png" },
+                new TeamAttachment { ID = 11, Path = "/images/teams/11.png" },
+                new TeamAttachment { ID = 12, Path = "/images/teams/12.png" },
+                new TeamAttachment { ID = 13, Path = "/images/teams/13.png" },
+                new TeamAttachment { ID = 14, Path = "/images/teams/14.png" },
+                new TeamAttachment { ID = 15, Path = "/images/teams/15.png" },
+                new TeamAttachment { ID = 16, Path = "/images/teams/16.png" },
+                new TeamAttachment { ID = 17, Path = "/images/teams/17.png" },
+                new TeamAttachment { ID = 18, Path = "/images/teams/18.png" },
+                new TeamAttachment { ID = 19, Path = "/images/teams/19.png" },
+                new TeamAttachment { ID = 20, Path = "/images/teams/20.png" },
+                new TeamAttachment { ID = 21, Path = "/images/teams/21.png" },
+                new TeamAttachment { ID = 22, Path = "/images/teams/22.png" },
+                new TeamAttachment { ID = 23, Path = "/images/teams/23.png" },
+                new TeamAttachment { ID = 24, Path = "/images/teams/24.png" },
+                new TeamAttachment { ID = 25, Path = "/images/teams/25.png" },
+                new TeamAttachment { ID = 26, Path = "/images/teams/26.png" },
+                new TeamAttachment { ID = 27, Path = "/images/teams/27.png" },
+                new TeamAttachment { ID = 28, Path = "/images/teams/28.png" },
+                new TeamAttachment { ID = 29, Path = "/images/teams/29.png" },
+                new TeamAttachment { ID = 30, Path = "/images/teams/30.png" }
+
+            );
+
+			modelBuilder.Entity<Coach>().HasData(
+				new Coach { ID = 1, FirstName = "Phil", LastName = "Jackson", CountryID = 186, DateOfBirth = new DateTime(1963, 2, 17), TeamID = 14 },
+				new Coach { ID = 2, FirstName = "Cool", LastName = "Coach", CountryID = 186, DateOfBirth = new DateTime(1963, 2, 16), TeamID = 7 }
 			);
 
-			modelBuilder.Entity<Venue>().HasData(
+			modelBuilder.Entity<Game>().HasData(
+				new Game { ID = 1, TeamHomeID = 7, TeamAwayID = 2, HomeScore = 125, AwayScore = 89, VenueID = 7, DateOfGame = new DateTime(2024, 07, 13)},
+				new Game { ID = 2, TeamHomeID = 8, TeamAwayID = 3, HomeScore = 77, AwayScore = 86, VenueID = 9, DateOfGame = new DateTime(2013, 01, 22)}
+			);
+
+            modelBuilder.Entity<Team>().HasData(
+				new Team { ID = 1, Name = "Atlanta Hawks", VenueID = 1, ConferenceID = 1, TeamAttachmentID = 1 },
+				new Team { ID = 2, Name = "Boston Celtics", VenueID = 2, ConferenceID = 1, TeamAttachmentID = 2 },
+				new Team { ID = 3, Name = "Brooklyn Nets", VenueID = 3, ConferenceID = 1, TeamAttachmentID = 3 },
+				new Team { ID = 4, Name = "Charlotte Hornets", VenueID = 4, ConferenceID = 1, TeamAttachmentID = 4 },
+				new Team { ID = 5, Name = "Chicago Bulls", VenueID = 5, ConferenceID = 1, TeamAttachmentID = 5 },
+				new Team { ID = 6, Name = "Cleveland Cavaliers", VenueID = 6, ConferenceID = 1 , TeamAttachmentID = 6 },
+				new Team { ID = 7, Name = "Dallas Mavericks", VenueID = 7, ConferenceID = 2, TeamAttachmentID = 7 },
+				new Team { ID = 8, Name = "Denver Nuggets", VenueID = 8, ConferenceID = 2 , TeamAttachmentID = 8 },
+				new Team { ID = 9, Name = "Detroit Pistons", VenueID = 9, ConferenceID = 1 , TeamAttachmentID = 9 },
+				new Team { ID = 10, Name = "Golden State Warriors", VenueID = 10, ConferenceID = 2 , TeamAttachmentID = 10 },
+				new Team { ID = 11, Name = "Houston Rockets", VenueID = 11, ConferenceID = 2 , TeamAttachmentID = 11 },
+				new Team { ID = 12, Name = "Indiana Pacers", VenueID = 12, ConferenceID = 1 , TeamAttachmentID = 12 },
+				new Team { ID = 13, Name = "Los Angeles Clippers", VenueID = 13, ConferenceID = 2 , TeamAttachmentID = 13 },
+				new Team { ID = 14, Name = "Los Angeles Lakers", VenueID = 14, ConferenceID = 2 , TeamAttachmentID = 14 },
+				new Team { ID = 15, Name = "Memphis Grizzlies", VenueID = 15, ConferenceID = 2 , TeamAttachmentID = 15 },
+				new Team { ID = 16, Name = "Miami Heat", VenueID = 16, ConferenceID = 1 , TeamAttachmentID = 16 },
+				new Team { ID = 17, Name = "Milwaukee Bucks", VenueID = 17, ConferenceID = 1 , TeamAttachmentID = 17 },
+				new Team { ID = 18, Name = "Minnesota Timberwolves", VenueID = 18, ConferenceID = 2 , TeamAttachmentID = 18 },
+				new Team { ID = 19, Name = "New Orleans Pelicans", VenueID = 19, ConferenceID = 2 , TeamAttachmentID = 19 },
+				new Team { ID = 20, Name = "New York Knicks", VenueID = 20, ConferenceID = 1 , TeamAttachmentID = 20 },
+				new Team { ID = 21, Name = "Oklahoma City Thunder", VenueID = 21, ConferenceID = 2 , TeamAttachmentID = 21 },
+				new Team { ID = 22, Name = "Orlando Magic", VenueID = 22, ConferenceID = 1 , TeamAttachmentID = 22 },
+				new Team { ID = 23, Name = "Philadelphia 76ers", VenueID = 23, ConferenceID = 1 , TeamAttachmentID = 23 },
+				new Team { ID = 24, Name = "Phoenix Suns", VenueID = 24, ConferenceID = 2 , TeamAttachmentID = 24 },
+				new Team { ID = 25, Name = "Portland Trail Blazers", VenueID = 25, ConferenceID = 2 , TeamAttachmentID = 25 },
+				new Team { ID = 26, Name = "Sacramento Kings", VenueID = 26, ConferenceID = 2 , TeamAttachmentID = 26 },
+				new Team { ID = 27, Name = "San Antonio Spurs", VenueID = 27, ConferenceID = 2 , TeamAttachmentID = 27 },
+				new Team { ID = 28, Name = "Toronto Raptors", VenueID = 28, ConferenceID = 1 , TeamAttachmentID = 28 },
+				new Team { ID = 29, Name = "Utah Jazz", VenueID = 29, ConferenceID = 2, TeamAttachmentID = 29 },
+				new Team { ID = 30, Name = "Washington Wizards", VenueID = 30, ConferenceID = 1 , TeamAttachmentID = 30	}
+			);
+
+            modelBuilder.Entity<Venue>().HasData(
 				new Venue { ID = 1, Name = "State Farm Arena", City = "Atlanta" },
 				new Venue { ID = 2, Name = "TD Garden", City = "Boston" },
 				new Venue { ID = 3, Name = "Barclays Center", City = "Brooklyn" },
@@ -296,26 +341,23 @@ namespace NBA.DAL
 				new Country { ID = 195, Name = "Zimbabwe" }
 			);
 
-            modelBuilder.Entity<Player>().HasData(
-				new Player { ID = 1, FirstName = "Michael", LastName = "Jordan", TeamID = 5, PositionID = 2, DateOfBirth = new DateTime(1963, 2, 17), Height = 198, Weight = 98, CountryID = 186 }, 
+			modelBuilder.Entity<Player>().HasData(
+				new Player { ID = 1, FirstName = "Michael", LastName = "Jordan", TeamID = 5, PositionID = 2, DateOfBirth = new DateTime(1963, 2, 17), Height = 198, Weight = 98, CountryID = 186 },
 				new Player { ID = 2, FirstName = "Scottie", LastName = "Pippen", TeamID = 5, PositionID = 3, DateOfBirth = new DateTime(1965, 9, 25), Height = 203, Weight = 102, CountryID = 186 },
-				new Player { ID = 7, FirstName = "Derrick", LastName = "Rose", TeamID = 5, PositionID = 1, DateOfBirth = new DateTime(1988, 10, 4), Height = 190, Weight = 89, CountryID = 186 },
-				new Player { ID = 8, FirstName = "Artūras", LastName = "Karnišovas", TeamID = 5, PositionID = 4, DateOfBirth = new DateTime(1971, 12, 28), Height = 203, Weight = 108, CountryID = 101 },
+				new Player { ID = 3, FirstName = "Derrick", LastName = "Rose", TeamID = 5, PositionID = 1, DateOfBirth = new DateTime(1988, 10, 4), Height = 190, Weight = 89, CountryID = 186 },
+				new Player { ID = 4, FirstName = "Artūras", LastName = "Karnišovas", TeamID = 5, PositionID = 4, DateOfBirth = new DateTime(1971, 12, 28), Height = 203, Weight = 108, CountryID = 101 },
+				new Player { ID = 5, FirstName = "Luka", LastName = "Dončić", TeamID = 7, PositionID = 1, DateOfBirth = new DateTime(1999, 1, 28), Height = 201, Weight = 109, CountryID = 158 },
+				new Player { ID = 6, FirstName = "Dirk", LastName = "Nowitzki", TeamID = 7, PositionID = 4, DateOfBirth = new DateTime(1978, 6, 19), Height = 213, Weight = 111, CountryID = 64 },
+				new Player { ID = 7, FirstName = "Kobe", LastName = "Bryant", TeamID = 14, PositionID = 2, DateOfBirth = new DateTime(1978, 8, 23), Height = 198, Weight = 96, CountryID = 186 },
+				new Player { ID = 8, FirstName = "LeBron", LastName = "James", TeamID = 14, PositionID = 3, DateOfBirth = new DateTime(1984, 12, 30), Height = 206, Weight = 113, CountryID = 186 },
+				new Player { ID = 9, FirstName = "Magic", LastName = "Johnson", TeamID = 14, PositionID = 1, DateOfBirth = new DateTime(1959, 8, 14), Height = 206, Weight = 100, CountryID = 186 },
+				new Player { ID = 10, FirstName = "Shaquille", LastName = "O'Neal", TeamID = 14, PositionID = 5, DateOfBirth = new DateTime(1972, 3, 6), Height = 216, Weight = 147, CountryID = 186 },
+				new Player { ID = 11, FirstName = "Nikola", LastName = "Jokic", TeamID = 8, PositionID = 5, DateOfBirth = new DateTime(1995, 2, 19), Height = 208, Weight = 113, CountryID = 153 },
+				new Player { ID = 12, FirstName = "Carmelo", LastName = "Anthony", TeamID = 8, PositionID = 3, DateOfBirth = new DateTime(1984, 5, 29), Height = 203, Weight = 109, CountryID = 186 }
+			);
 
-				new Player { ID = 3, FirstName = "Luka", LastName = "Dončić", TeamID = 7, PositionID = 1, DateOfBirth = new DateTime(1999, 2, 28), Height = 201, Weight = 109, CountryID = 158 }, 
-				new Player { ID = 9, FirstName = "Dirk", LastName = "Nowitzki", TeamID = 7, PositionID = 4, DateOfBirth = new DateTime(1978, 6, 19), Height = 213, Weight = 111, CountryID = 64 },
 
-				new Player { ID = 4, FirstName = "Kobe", LastName = "Bryant", TeamID = 14, PositionID = 2, DateOfBirth = new DateTime(1978, 8, 23), Height = 198, Weight = 96, CountryID = 186 },
-				new Player { ID = 5, FirstName = "LeBron", LastName = "James", TeamID = 14, PositionID = 3, DateOfBirth = new DateTime(1984, 12, 30), Height = 206, Weight = 113, CountryID = 186 },
-				new Player { ID = 12, FirstName = "Magic", LastName = "Johnson", TeamID = 14, PositionID = 1, DateOfBirth = new DateTime(1959, 8, 14), Height = 206, Weight = 100, CountryID = 186 },
-				new Player { ID = 13, FirstName = "Shaquille", LastName = "O'Neal", TeamID = 14, PositionID = 5, DateOfBirth = new DateTime(1972, 3, 6), Height = 216, Weight = 147, CountryID = 186 },
-
-				new Player { ID = 33, FirstName = "Nikola", LastName = "Jokic", TeamID = 8, PositionID = 5, DateOfBirth = new DateTime(1995, 2, 19), Height = 208, Weight = 113, CountryID = 153 },
-				new Player { ID = 34, FirstName = "Carmelo", LastName = "Anthony", TeamID = 8, PositionID = 3, DateOfBirth = new DateTime(1984, 5, 29), Height = 203, Weight = 109, CountryID = 186 }
-
-            );
-
-        }
+		}
 
 	}
 }

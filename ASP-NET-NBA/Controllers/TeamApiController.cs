@@ -23,7 +23,6 @@ namespace ASP_NET_NBA.Controllers
 			List<TeamDTO> players = _dbContext.Teams
 				.Include(p => p.Venue)
 				.Include(p => p.Conference)
-				.Include(p => p.Coach)
 				.Select(p => toTeamDTO(p))
 				.ToList();
 
@@ -37,7 +36,6 @@ namespace ASP_NET_NBA.Controllers
             TeamDTO? player = _dbContext.Teams
                 .Include(p => p.Venue)
                 .Include(p => p.Conference)
-                .Include(p => p.Coach)
                 .Where(p => p.ID == id)
 				.Select(p => toTeamDTO(p))
 				.FirstOrDefault();
@@ -52,7 +50,6 @@ namespace ASP_NET_NBA.Controllers
 			List<TeamDTO> clients = _dbContext.Teams
                 .Include(p => p.Venue)
                 .Include(p => p.Conference)
-                .Include(p => p.Coach)
                 .Where(p => p.Name.Contains(q))
 				.Select(p => toTeamDTO(p))
 				.ToList();
@@ -64,7 +61,6 @@ namespace ASP_NET_NBA.Controllers
 		{
 			public int ID { get; set; }
 			public string Name { get; set; }
-			public CoachDTO? Coach { get; set; }
 		}
 
 		public class CoachDTO
@@ -78,8 +74,7 @@ namespace ASP_NET_NBA.Controllers
 			return new TeamDTO()
 			{
 				ID = t.ID,
-                Name = t.Name,
-                Coach = new CoachDTO() { ID = t?.Coach?.ID, Name = t?.Coach?.FullName }
+                Name = t.Name
 			};
 		}
 	}

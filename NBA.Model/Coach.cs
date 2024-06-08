@@ -25,10 +25,12 @@ namespace NBA.Model
         public DateTime DateOfBirth { get; set; }
 
 		[ForeignKey(nameof(Country))]
-		public int? CountryID { get; set; }
+		[Required(ErrorMessage = "Country is required")]
+		public int CountryID { get; set; }
 		public Country? Country { get; set; }
 
 		[ForeignKey(nameof(Team))]
+		[Required(ErrorMessage = "Team is required")]
 		public int? TeamID { get; set; }
 		public Team? Team { get; set; }
         public string FullName => $"{FirstName} {LastName}";

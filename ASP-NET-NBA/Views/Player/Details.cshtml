@@ -16,62 +16,71 @@
 		</ol>
 	</nav>
 
-	<div>
+	<div class="row">
 		<h4>Player</h4>
 		<hr />
-		<dl class="dl-horizontal">
-			<dt>
-				ID
-			</dt>
-			<dd>
-				@Html.DisplayFor(model => model.ID)
-			</dd>
-			<dt>
-				Full Name
-			</dt>
-			<dd>
-				@Html.DisplayFor(model => model.FullName)
-			</dd>
-			<dt>
-				Country
-			</dt>
-			<dd>
-				@Model?.Country?.Name
-			</dd>
-			<dt>
-				Team
-			</dt>
-			<dd>
-				@Model?.Team?.Name
-			</dd>
-			<dt>
-				Position
-			</dt>
-			<dd>
-				@Model?.Position?.Name
-			</dd>
-			<dt>
-				Age
-			</dt>
-			<dd>
-				@Model.GetAge()
-			</dd>
-			<dt>
-				Height
-			</dt>
-			<dd>
-				@Html.DisplayFor(model => model.Height) cm
-			</dd>
-			<dt>
-				Weight
-			</dt>
-			<dd>
-				@Html.DisplayFor(model => model.Weight) kg
-			</dd>
-		</dl>
+		<div class="col-md-8">
+			<dl class="dl-horizontal">
+				<dt>
+					ID
+				</dt>
+				<dd>
+					@Html.DisplayFor(model => model.ID)
+				</dd>
+				<dt>
+					Full Name
+				</dt>
+				<dd>
+					@Html.DisplayFor(model => model.FullName)
+				</dd>
+				<dt>
+					Country
+				</dt>
+				<dd>
+					@(@Model?.Country?.Name ?? "No country assigned")
+				</dd>
+				<dt>
+					Team
+				</dt>
+				<dd>
+					@if (Model?.Team != null)
+					{
+						<a asp-action="Details" asp-controller="Team" asp-route-id="@Model.Team.ID">@Model.Team.Name</a>
+					}
+					else
+					{
+						<span>No team assigned</span>
+					}
+				</dd>
+				<dt>
+					Position
+				</dt>
+				<dd>
+					@(@Model?.Position?.Name ?? "No position assigned")
+				</dd>
+				<dt>
+					Age
+				</dt>
+				<dd>
+					@Model.GetAge()
+				</dd>
+				<dt>
+					Height
+				</dt>
+				<dd>
+					@Html.DisplayFor(model => model.Height) cm
+				</dd>
+				<dt>
+					Weight
+				</dt>
+				<dd>
+					@Html.DisplayFor(model => model.Weight) kg
+				</dd>
 
-		<div>
-			<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a>
+				<dd>
+					<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a>
+				</dd>
+			</dl>
 		</div>
 	</div>
 

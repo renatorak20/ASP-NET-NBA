@@ -6,6 +6,8 @@ namespace ASP_NET_NBA.Models
 	{
 		public Team Team { get; set; }
 		public List<Player> Players { get; set; }
+
+		public int CoachesCount { get; set; }
 	}
 
 }
