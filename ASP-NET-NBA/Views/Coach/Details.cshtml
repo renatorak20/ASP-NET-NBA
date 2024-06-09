@@ -55,6 +55,11 @@
 		<div>
 			<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a>
 		</div>
+		<div>
+			<button type="button" class="btn btn-danger">
+				<a asp-action="Delete" asp-route-id="@Model.ID" style="color:white">Delete</a>
+			</button>
+		</div>
 	</div>
 
 }

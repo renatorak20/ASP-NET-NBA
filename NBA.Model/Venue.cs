@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NBA.Model
 {
@@ -7,7 +8,9 @@ namespace NBA.Model
 		[Key]
 		public int ID { get; set; }
 		public string Name { get; set; }
-		public string City { get; set; }
-        public virtual Team Teams { get; set; }
+
+		[ForeignKey(nameof(City))]
+		public int? CityID { get; set; }
+		public City? City { get; set; }
 	}
 }

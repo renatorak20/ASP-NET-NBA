@@ -77,13 +77,10 @@ namespace ASP_NET_NBA.Controllers
 				playerForUpdate.LastName = player.LastName;
 				playerForUpdate.Height = player.Height;
 				playerForUpdate.Weight = player.Weight;
+				playerForUpdate.DateOfBirth = player.DateOfBirth;
+				playerForUpdate.PositionID = player.PositionID;
+				playerForUpdate.CountryID = player.CountryID;
 
-				if (player.DateOfBirth != null)
-					playerForUpdate.DateOfBirth = player.DateOfBirth;
-				if (player.PositionID != null)
-					playerForUpdate.PositionID = player.PositionID;
-				if (player.CountryID != null)
-					playerForUpdate.CountryID = player.CountryID;
 				if (player.TeamID != null)
 					playerForUpdate.TeamID = player.TeamID;
 
@@ -136,7 +133,7 @@ namespace ASP_NET_NBA.Controllers
 		{
 			public int ID { get; set; }
 			public string FullName { get; set; }
-			public PositionDTO? Position { get; set; }
+			public PositionDTO Position { get; set; }
 			public TeamDTO? Team { get; set; }
 		}
 

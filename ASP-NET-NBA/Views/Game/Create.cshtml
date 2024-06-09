@@ -35,16 +35,4 @@
             homeTeamSelect.value = '';
         }
     });
-
-    function selectRandomOption(selectElement) {
-        var options = selectElement.options;
-        var randomIndex = Math.floor(Math.random() * options.length);
-        selectElement.selectedIndex = randomIndex;
-    }
-
-    window.addEventListener('DOMContentLoaded', function () {
-        selectRandomOption(homeTeamSelect);
-        selectRandomOption(awayTeamSelect);
-        selectRandomOption(venueSelect);
-    });
 </script>

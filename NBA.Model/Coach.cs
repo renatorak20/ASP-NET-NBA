@@ -22,11 +22,11 @@ namespace NBA.Model
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Date of birth is required")]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
 		[ForeignKey(nameof(Country))]
 		[Required(ErrorMessage = "Country is required")]
-		public int CountryID { get; set; }
+		public int? CountryID { get; set; }
 		public Country? Country { get; set; }
 
 		[ForeignKey(nameof(Team))]
@@ -37,8 +37,12 @@ namespace NBA.Model
 
         public int? GetAge()
 		{
+			if (DateOfBirth == null)
+			{
+				return 0;
+			}
 			var today = DateTime.Today;
-			var age = today.Year - DateOfBirth.Year;
+			var age = today.Year - DateOfBirth.Value.Year;
 			return age;
 		}
 

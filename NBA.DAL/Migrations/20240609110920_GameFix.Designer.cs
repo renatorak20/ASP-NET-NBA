@@ -12,8 +12,8 @@ using NBA.DAL;
 namespace NBA.DAL.Migrations
 {
     [DbContext(typeof(NBAManagerDbContext))]
-    [Migration("20240608221829_CoachFix2")]
-    partial class CoachFix2
+    [Migration("20240609110920_GameFix")]
+    partial class GameFix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,6 +227,170 @@ namespace NBA.DAL.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("NBA.Model.City", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("City");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Name = "Atlanta"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Name = "Boston"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Name = "Brooklyn"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Name = "Charlotte"
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Name = "Chicago"
+                        },
+                        new
+                        {
+                            ID = 6,
+                            Name = "Cleveland"
+                        },
+                        new
+                        {
+                            ID = 7,
+                            Name = "Dallas"
+                        },
+                        new
+                        {
+                            ID = 8,
+                            Name = "Denver"
+                        },
+                        new
+                        {
+                            ID = 9,
+                            Name = "Detroit"
+                        },
+                        new
+                        {
+                            ID = 10,
+                            Name = "San Francisco"
+                        },
+                        new
+                        {
+                            ID = 11,
+                            Name = "Houston"
+                        },
+                        new
+                        {
+                            ID = 12,
+                            Name = "Indianapolis"
+                        },
+                        new
+                        {
+                            ID = 13,
+                            Name = "Los Angeles"
+                        },
+                        new
+                        {
+                            ID = 14,
+                            Name = "Memphis"
+                        },
+                        new
+                        {
+                            ID = 15,
+                            Name = "Miami"
+                        },
+                        new
+                        {
+                            ID = 16,
+                            Name = "Milwaukee"
+                        },
+                        new
+                        {
+                            ID = 17,
+                            Name = "Minneapolis"
+                        },
+                        new
+                        {
+                            ID = 18,
+                            Name = "New Orleans"
+                        },
+                        new
+                        {
+                            ID = 19,
+                            Name = "New York"
+                        },
+                        new
+                        {
+                            ID = 20,
+                            Name = "Oklahoma City"
+                        },
+                        new
+                        {
+                            ID = 21,
+                            Name = "Orlando"
+                        },
+                        new
+                        {
+                            ID = 22,
+                            Name = "Philadelphia"
+                        },
+                        new
+                        {
+                            ID = 23,
+                            Name = "Phoenix"
+                        },
+                        new
+                        {
+                            ID = 24,
+                            Name = "Portland"
+                        },
+                        new
+                        {
+                            ID = 25,
+                            Name = "Sacramento"
+                        },
+                        new
+                        {
+                            ID = 26,
+                            Name = "San Antonio"
+                        },
+                        new
+                        {
+                            ID = 27,
+                            Name = "Toronto"
+                        },
+                        new
+                        {
+                            ID = 28,
+                            Name = "Salt Lake City"
+                        },
+                        new
+                        {
+                            ID = 29,
+                            Name = "Washington, D.C."
+                        });
+                });
+
             modelBuilder.Entity("NBA.Model.Coach", b =>
                 {
                     b.Property<int>("ID")
@@ -235,10 +399,12 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("CountryID")
+                    b.Property<int?>("CountryID")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -1323,12 +1489,15 @@ namespace NBA.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("TeamAwayID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("TeamHomeID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("VenueID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("ID");
@@ -1340,6 +1509,28 @@ namespace NBA.DAL.Migrations
                     b.HasIndex("VenueID");
 
                     b.ToTable("Games");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            AwayScore = 89,
+                            DateOfGame = new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HomeScore = 125,
+                            TeamAwayID = 2,
+                            TeamHomeID = 7,
+                            VenueID = 7
+                        },
+                        new
+                        {
+                            ID = 2,
+                            AwayScore = 86,
+                            DateOfGame = new DateTime(2013, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HomeScore = 77,
+                            TeamAwayID = 3,
+                            TeamHomeID = 8,
+                            VenueID = 9
+                        });
                 });
 
             modelBuilder.Entity("NBA.Model.Player", b =>
@@ -1350,10 +1541,12 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("CountryID")
+                    b.Property<int?>("CountryID")
+                        .IsRequired()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
+                        .IsRequired()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
@@ -1367,7 +1560,8 @@ namespace NBA.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PositionID")
+                    b.Property<int?>("PositionID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("TeamID")
@@ -1604,9 +1798,7 @@ namespace NBA.DAL.Migrations
 
                     b.HasIndex("TeamAttachmentID");
 
-                    b.HasIndex("VenueID")
-                        .IsUnique()
-                        .HasFilter("[VenueID] IS NOT NULL");
+                    b.HasIndex("VenueID");
 
                     b.ToTable("Teams");
 
@@ -2030,9 +2222,8 @@ namespace NBA.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("CityID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -2040,187 +2231,189 @@ namespace NBA.DAL.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("CityID");
+
                     b.ToTable("Venues");
 
                     b.HasData(
                         new
                         {
                             ID = 1,
-                            City = "Atlanta",
+                            CityID = 1,
                             Name = "State Farm Arena"
                         },
                         new
                         {
                             ID = 2,
-                            City = "Boston",
+                            CityID = 2,
                             Name = "TD Garden"
                         },
                         new
                         {
                             ID = 3,
-                            City = "Brooklyn",
+                            CityID = 3,
                             Name = "Barclays Center"
                         },
                         new
                         {
                             ID = 4,
-                            City = "Charlotte",
+                            CityID = 4,
                             Name = "Spectrum Center"
                         },
                         new
                         {
                             ID = 5,
-                            City = "Chicago",
+                            CityID = 5,
                             Name = "United Center"
                         },
                         new
                         {
                             ID = 6,
-                            City = "Cleveland",
+                            CityID = 6,
                             Name = "Rocket Mortgage FieldHouse"
                         },
                         new
                         {
                             ID = 7,
-                            City = "Dallas",
+                            CityID = 7,
                             Name = "American Airlines Center"
                         },
                         new
                         {
                             ID = 8,
-                            City = "Denver",
+                            CityID = 8,
                             Name = "Ball Arena"
                         },
                         new
                         {
                             ID = 9,
-                            City = "Detroit",
+                            CityID = 9,
                             Name = "Little Caesars Arena"
                         },
                         new
                         {
                             ID = 10,
-                            City = "San Francisco",
+                            CityID = 10,
                             Name = "Chase Center"
                         },
                         new
                         {
                             ID = 11,
-                            City = "Houston",
+                            CityID = 11,
                             Name = "Toyota Center"
                         },
                         new
                         {
                             ID = 12,
-                            City = "Indianapolis",
+                            CityID = 12,
                             Name = "Gainbridge Fieldhouse"
                         },
                         new
                         {
                             ID = 13,
-                            City = "Los Angeles",
+                            CityID = 13,
                             Name = "Crypto.com Arena"
                         },
                         new
                         {
                             ID = 14,
-                            City = "Los Angeles",
+                            CityID = 13,
                             Name = "Crypto.com Arena"
                         },
                         new
                         {
                             ID = 15,
-                            City = "Memphis",
+                            CityID = 14,
                             Name = "FedExForum"
                         },
                         new
                         {
                             ID = 16,
-                            City = "Miami",
+                            CityID = 15,
                             Name = "Kaseya Center"
                         },
                         new
                         {
                             ID = 17,
-                            City = "Milwaukee",
+                            CityID = 16,
                             Name = "Fiserv Forum"
                         },
                         new
                         {
                             ID = 18,
-                            City = "Minneapolis",
+                            CityID = 17,
                             Name = "Target Center"
                         },
                         new
                         {
                             ID = 19,
-                            City = "New Orleans",
+                            CityID = 18,
                             Name = "Smoothie King Center"
                         },
                         new
                         {
                             ID = 20,
-                            City = "New York",
+                            CityID = 19,
                             Name = "Madison Square Garden"
                         },
                         new
                         {
                             ID = 21,
-                            City = "Oklahoma City",
+                            CityID = 20,
                             Name = "Paycom Center"
                         },
                         new
                         {
                             ID = 22,
-                            City = "Orlando",
+                            CityID = 21,
                             Name = "Amway Center"
                         },
                         new
                         {
                             ID = 23,
-                            City = "Philadelphia",
+                            CityID = 22,
                             Name = "Wells Fargo Center"
                         },
                         new
                         {
                             ID = 24,
-                            City = "Phoenix",
+                            CityID = 23,
                             Name = "Footprint Center"
                         },
                         new
                         {
                             ID = 25,
-                            City = "Portland",
+                            CityID = 24,
                             Name = "Moda Center"
                         },
                         new
                         {
                             ID = 26,
-                            City = "Sacramento",
+                            CityID = 25,
                             Name = "Golden 1 Center"
                         },
                         new
                         {
                             ID = 27,
-                            City = "San Antonio",
+                            CityID = 26,
                             Name = "AT&T Center"
                         },
                         new
                         {
                             ID = 28,
-                            City = "Toronto",
+                            CityID = 27,
                             Name = "Scotiabank Arena"
                         },
                         new
                         {
                             ID = 29,
-                            City = "Salt Lake City",
+                            CityID = 28,
                             Name = "Vivint Arena"
                         },
                         new
                         {
                             ID = 30,
-                            City = "Washington, D.C.",
+                            CityID = 29,
                             Name = "Capital One Arena"
                         });
                 });
@@ -2285,7 +2478,7 @@ namespace NBA.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("NBA.Model.Team", "Team")
-                        .WithMany("Coaches")
+                        .WithMany()
                         .HasForeignKey("TeamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2299,15 +2492,21 @@ namespace NBA.DAL.Migrations
                 {
                     b.HasOne("NBA.Model.Team", "TeamAway")
                         .WithMany()
-                        .HasForeignKey("TeamAwayID");
+                        .HasForeignKey("TeamAwayID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NBA.Model.Team", "TeamHome")
                         .WithMany()
-                        .HasForeignKey("TeamHomeID");
+                        .HasForeignKey("TeamHomeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("NBA.Model.Venue", "Venue")
                         .WithMany()
-                        .HasForeignKey("VenueID");
+                        .HasForeignKey("VenueID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("TeamAway");
 
@@ -2344,7 +2543,7 @@ namespace NBA.DAL.Migrations
             modelBuilder.Entity("NBA.Model.Team", b =>
                 {
                     b.HasOne("NBA.Model.Conference", "Conference")
-                        .WithMany()
+                        .WithMany("Teams")
                         .HasForeignKey("ConferenceID");
 
                     b.HasOne("NBA.Model.TeamAttachment", "TeamAttachment")
@@ -2352,14 +2551,33 @@ namespace NBA.DAL.Migrations
                         .HasForeignKey("TeamAttachmentID");
 
                     b.HasOne("NBA.Model.Venue", "Venue")
-                        .WithOne("Teams")
-                        .HasForeignKey("NBA.Model.Team", "VenueID");
+                        .WithMany()
+                        .HasForeignKey("VenueID");
 
                     b.Navigation("Conference");
 
                     b.Navigation("TeamAttachment");
 
                     b.Navigation("Venue");
+                });
+
+            modelBuilder.Entity("NBA.Model.Venue", b =>
+                {
+                    b.HasOne("NBA.Model.City", "City")
+                        .WithMany("Venues")
+                        .HasForeignKey("CityID");
+
+                    b.Navigation("City");
+                });
+
+            modelBuilder.Entity("NBA.Model.City", b =>
+                {
+                    b.Navigation("Venues");
+                });
+
+            modelBuilder.Entity("NBA.Model.Conference", b =>
+                {
+                    b.Navigation("Teams");
                 });
 
             modelBuilder.Entity("NBA.Model.Country", b =>
@@ -2376,15 +2594,7 @@ namespace NBA.DAL.Migrations
 
             modelBuilder.Entity("NBA.Model.Team", b =>
                 {
-                    b.Navigation("Coaches");
-
                     b.Navigation("Players");
-                });
-
-            modelBuilder.Entity("NBA.Model.Venue", b =>
-                {
-                    b.Navigation("Teams")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

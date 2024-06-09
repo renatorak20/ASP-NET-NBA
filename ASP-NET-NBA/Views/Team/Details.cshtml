@@ -7,7 +7,7 @@
 
 <h2>Details</h2>
 
-@if (Model != null)
+@if (Model.Team != null && Model.Players != null)
 {
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -30,7 +30,7 @@
                 <dt>Venue</dt>
                 <dd>@Model?.Team.Venue?.Name</dd>
                 <dt>Venue City</dt>
-                <dd>@Model?.Team.Venue?.City</dd>
+                <dd>@Model?.Team.Venue?.City?.Name</dd>
                 <dt>Coaches</dt>
                 <dd>@(@Model?.CoachesCount.ToString() ?? "No coach yet!")</dd>
             </dl>

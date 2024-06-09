@@ -19,15 +19,15 @@ namespace NBA.Model
 
 		[ForeignKey(nameof(Position))]
 		[Required(ErrorMessage = "Position must be selected!")]
-		public int PositionID { get; set; }
+		public int? PositionID { get; set; }
 		public Position? Position { get; set; }
 
 		[Required(ErrorMessage = "Date of birth is required")]
-		public DateTime DateOfBirth { get; set; }
+		public DateTime? DateOfBirth { get; set; }
 
 		[ForeignKey(nameof(Country))]
 		[Required(ErrorMessage = "Country must be selected!")]
-		public int CountryID { get; set; }
+		public int? CountryID { get; set; }
 		public Country? Country { get; set; }
 
 		[ForeignKey(nameof(Team))]
@@ -44,7 +44,11 @@ namespace NBA.Model
         public int? GetAge()
 		{
 			var today = DateTime.Today;
-			var age = today.Year - DateOfBirth.Year;
+			if (DateOfBirth == null)
+			{
+				return 0;
+			}
+			var age = today.Year - DateOfBirth.Value.Year;
 			return age;
 		}
 	}

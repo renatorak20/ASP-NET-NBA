@@ -22,8 +22,8 @@ namespace ASP_NET_NBA.Controllers
         public IActionResult Index()
 		{
 			var coachQuery = _dbContext.Coaches
-				.Include(p => p.Country)
-				.Include(p => p.Team)
+				.Include(c => c.Country)
+				.Include(c => c.Team)
 				.AsQueryable();
 
 			var model = coachQuery.ToList();
@@ -34,9 +34,9 @@ namespace ASP_NET_NBA.Controllers
 		public IActionResult Details(int? id = null)
 		{
 			var coach = _dbContext.Coaches
-                .Include(p => p.Country)
-				.Include(p => p.Team)
-				.Where(p => p.ID == id)
+                .Include(c => c.Country)
+				.Include(c => c.Team)
+				.Where(c => c.ID == id)
 				.FirstOrDefault();
 
 			return View(coach);
@@ -102,13 +102,13 @@ namespace ASP_NET_NBA.Controllers
 
 			var coachQuery = _dbContext.Coaches.Include(p => p.Country).Include(p => p.Team).AsQueryable();
 			if (!string.IsNullOrWhiteSpace(filterCoach.FullName))
-				coachQuery = coachQuery.Where(p => (p.FirstName + " " + p.LastName).ToLower().Contains(filterCoach.FullName.ToLower()));
+				coachQuery = coachQuery.Where(c => (c.FirstName + " " + c.LastName).ToLower().Contains(filterCoach.FullName.ToLower()));
 
 			if (!string.IsNullOrWhiteSpace(filterCoach.Team))
-				coachQuery = coachQuery.Where(p => p.Team.Name.ToLower().Contains(filterCoach.Team.ToLower()));
+				coachQuery = coachQuery.Where(c => c.Team.Name.ToLower().Contains(filterCoach.Team.ToLower()));
 
 			if (!string.IsNullOrWhiteSpace(filterCoach.Country))
-				coachQuery = coachQuery.Where(p => p.Country.Name.ToLower().Contains(filterCoach.Country.ToLower()));
+				coachQuery = coachQuery.Where(c => c.Country.Name.ToLower().Contains(filterCoach.Country.ToLower()));
 
 			var model = coachQuery.ToList();
 			return PartialView("_IndexTable", model);
@@ -163,9 +163,9 @@ namespace ASP_NET_NBA.Controllers
             listItem.Value = "";
             countries.Add(listItem);
 
-            foreach (var category in _dbContext.Countries)
+            foreach (var country in _dbContext.Countries)
             {
-                listItem = new SelectListItem(category.Name, category.ID.ToString());
+                listItem = new SelectListItem(country.Name, country.ID.ToString());
                 countries.Add(listItem);
             }
 

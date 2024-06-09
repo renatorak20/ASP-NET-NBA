@@ -5,7 +5,7 @@
 namespace NBA.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class CoachFix1 : Migration
+    public partial class GameFix2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

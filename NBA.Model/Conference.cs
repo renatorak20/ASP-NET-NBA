@@ -13,5 +13,6 @@ namespace NBA.Model
         [Key]
         public int ID { get; set; }
         public string Name { get; set; }
-    }
+		public virtual ICollection<Team> Teams { get; set; }
+	}
 }

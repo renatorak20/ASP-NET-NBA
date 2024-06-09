@@ -21,9 +21,9 @@ namespace ASP_NET_NBA.Controllers
 		public IActionResult Get()
 		{
 			List<TeamDTO> players = _dbContext.Teams
-				.Include(p => p.Venue)
-				.Include(p => p.Conference)
-				.Select(p => toTeamDTO(p))
+				.Include(t => t.Venue)
+				.Include(t => t.Conference)
+				.Select(t => toTeamDTO(t))
 				.ToList();
 
 			return Ok(players);
@@ -34,10 +34,10 @@ namespace ASP_NET_NBA.Controllers
 		public IActionResult Get(int id)
 		{
             TeamDTO? player = _dbContext.Teams
-                .Include(p => p.Venue)
-                .Include(p => p.Conference)
+                .Include(t => t.Venue)
+                .Include(t => t.Conference)
                 .Where(p => p.ID == id)
-				.Select(p => toTeamDTO(p))
+				.Select(t => toTeamDTO(t))
 				.FirstOrDefault();
 
 			return player == null ? NotFound() : Ok(player);
@@ -48,10 +48,10 @@ namespace ASP_NET_NBA.Controllers
 		public IActionResult Get(string q)
 		{
 			List<TeamDTO> clients = _dbContext.Teams
-                .Include(p => p.Venue)
-                .Include(p => p.Conference)
-                .Where(p => p.Name.Contains(q))
-				.Select(p => toTeamDTO(p))
+                .Include(t => t.Venue)
+                .Include(t => t.Conference)
+                .Where(t => t.Name.Contains(q))
+				.Select(t => toTeamDTO(t))
 				.ToList();
 
 			return Ok(clients);

@@ -14,15 +14,18 @@ namespace NBA.Model
         public int ID { get; set; }
 
         [ForeignKey(nameof(Team))]
-        public int? TeamHomeID { get; set; }
+		[Required(ErrorMessage = "Home team must be selected!")]
+		public int? TeamHomeID { get; set; }
         public Team? TeamHome { get; set; }
 
         [ForeignKey(nameof(Team))]
-        public int? TeamAwayID { get; set; }
+		[Required(ErrorMessage = "Away team must be selected!")]
+		public int? TeamAwayID { get; set; }
         public Team? TeamAway { get; set; }
 
         [ForeignKey(nameof(Venue))]
-        public int? VenueID { get; set; }
+		[Required(ErrorMessage = "Game venue must be selected!")]
+		public int? VenueID { get; set; }
         public Venue? Venue { get; set; }
 
 
@@ -35,6 +38,6 @@ namespace NBA.Model
         public int AwayScore { get; set; }
 
         [Required(ErrorMessage = "Date of game is required")]
-        public DateTime DateOfGame { get; set; }
+        public DateTime? DateOfGame { get; set; }
     }
 }

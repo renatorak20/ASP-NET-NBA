@@ -80,6 +80,11 @@
 				<dd>
 					<a asp-action="Edit" asp-route-id="@Model.ID" class="btn btn-primary">Edit</a>
 				</dd>
+				<dd>
+					<button type="button" class="btn btn-danger">
+						<a asp-action="Delete" asp-route-id="@Model.ID" style="color:white">Delete</a>
+					</button>
+				</dd>
 			</dl>
 		</div>
 	</div>

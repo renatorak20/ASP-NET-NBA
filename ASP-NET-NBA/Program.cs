@@ -45,6 +45,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseStatusCodePages();
 
 app.UseRouting();
 
@@ -61,15 +62,35 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 	SupportedCultures = supportedCultures,
 	SupportedUICultures = supportedCultures
 });
+
 app.UseEndpoints(endpoints =>
 {
 	endpoints.MapDefaultControllerRoute();
 	endpoints.MapRazorPages();
 });
+
+app.Use(async (context, next) => {
+	await next();
+	if (context.Response.StatusCode == 404)
+	{
+		context.Request.Path = "/404";
+		await next();
+	}
+});
+
+//app.UseMvcWithDefaultRoute();
+
 app.MapRazorPages();
+
 app.MapControllerRoute(
 	name: "default",
 	pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+app.MapControllerRoute(
+    name: "nba-teams",
+    pattern: "nba-teams",
+    defaults: new { controller = "Team", action = "Index" });
 
 using (var scope = app.Services.CreateScope())
 {

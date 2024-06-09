@@ -22,12 +22,10 @@ namespace ASP_NET_NBA.Controllers
         public IActionResult Index()
         {
             var teamQuery = _dbContext.Teams
-                .Include(p => p.Venue)
-                .Include(p => p.Conference)
-                .Include(p => p.TeamAttachment)
+                .Include(t => t.Venue)
+                .Include(t => t.Conference)
+                .Include(t => t.TeamAttachment)
                 .AsQueryable();
-
-            var a = _dbContext.TeamAttachments;
 
             var model = teamQuery.ToList();
             this.FillDropdownValues();
@@ -38,16 +36,11 @@ namespace ASP_NET_NBA.Controllers
         public IActionResult Details(int? id = null)
 		{
 			var team = _dbContext.Teams
-				.Include(p => p.Venue)
-				.Include(p => p.Conference)
-                .Include(p => p.TeamAttachment)
-                .Where(p => p.ID == id)
+				.Include(t => t.Venue)
+				.Include(t => t.Conference)
+                .Include(t => t.TeamAttachment)
+                .Where(t => t.ID == id)
 				.FirstOrDefault();
-
-			if (team == null)
-			{
-				return NotFound();
-			}
 
 			var players = _dbContext.Players
 				.Include(p => p.Position)
@@ -78,7 +71,7 @@ namespace ASP_NET_NBA.Controllers
 
             var teamQuery = _dbContext.Teams.Include(p => p.Venue).Include(p => p.TeamAttachment).Include(p => p.Conference).AsQueryable();
             if (!string.IsNullOrWhiteSpace(filterTeam.Venue))
-                teamQuery = teamQuery.Where(p => (p.Venue.Name).Contains(filterTeam.Venue, StringComparison.CurrentCultureIgnoreCase));
+                teamQuery = teamQuery.Where(p => (p.Venue.Name.ToLower()).Contains(filterTeam.Venue.ToLower()));
 
             if (!string.IsNullOrWhiteSpace(filterTeam.Team))
                 teamQuery = teamQuery.Where(p => p.Name.ToLower().Contains(filterTeam.Team.ToLower()));

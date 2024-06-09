@@ -26,6 +26,6 @@ namespace NBA.Model
 		[ForeignKey(nameof(TeamAttachment))]
         public int? TeamAttachmentID { get; set; }
         public TeamAttachment TeamAttachment { get; set; }
-        public virtual ICollection<Player>? Players { get; set; }
+		public virtual ICollection<Player>? Players { get; set; }
 	}
 }

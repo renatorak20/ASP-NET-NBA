@@ -74,7 +74,7 @@ namespace ASP_NET_NBA.Controllers
         [Authorize(Roles = "Admin, Manager")]
         public IActionResult Edit(int id)
 		{
-			var model = _dbContext.Players.FirstOrDefault(c => c.ID == id);
+			var model = _dbContext.Players.FirstOrDefault(p => p.ID == id);
 			this.FillDropdownValues();
 			return View(model);
 		}
@@ -84,7 +84,7 @@ namespace ASP_NET_NBA.Controllers
         [Authorize(Roles = "Admin, Manager")]
         public async Task<IActionResult> EditPost(int id)
 		{
-			var player = _dbContext.Players.Single(c => c.ID == id);
+			var player = _dbContext.Players.Single(p => p.ID == id);
 
 			var ok = await this.TryUpdateModelAsync(player);
 

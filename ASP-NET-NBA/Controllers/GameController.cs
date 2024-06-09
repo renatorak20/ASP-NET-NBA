@@ -22,9 +22,9 @@ namespace ASP_NET_NBA.Controllers
         public IActionResult Index()
         {
             var gameQuery = _dbContext.Games
-                .Include(p => p.Venue)
-                .Include(p => p.TeamAway)
-                .Include(p => p.TeamHome)
+                .Include(g => g.Venue)
+                .Include(g => g.TeamAway)
+                .Include(g => g.TeamHome)
                 .AsQueryable();
 
             var model = gameQuery.ToList();
@@ -36,9 +36,9 @@ namespace ASP_NET_NBA.Controllers
         public IActionResult Details(int? id = null)
 		{
 			var team = _dbContext.Teams
-				.Include(p => p.Venue)
-				.Include(p => p.Conference)
-				.Where(p => p.ID == id)
+				.Include(t => t.Venue)
+				.Include(t => t.Conference)
+				.Where(t => t.ID == id)
 				.FirstOrDefault();
 
             var coachesCount = _dbContext.Coaches.
@@ -122,7 +122,7 @@ namespace ASP_NET_NBA.Controllers
 		[Authorize(Roles = "Admin")]
 		public IActionResult Delete(int id)
 		{
-			Game? gameToDelete = _dbContext.Games.FirstOrDefault(c => c.ID == id);
+			Game? gameToDelete = _dbContext.Games.FirstOrDefault(g => g.ID == id);
 
 			if (gameToDelete == null)
 			{
@@ -142,10 +142,10 @@ namespace ASP_NET_NBA.Controllers
         {
             filterGame ??= new GameFilterModel();
 
-            var gameQuery = _dbContext.Games.Include(p => p.Venue).Include(p => p.TeamHome).Include(p => p.TeamAway).AsQueryable();
+            var gameQuery = _dbContext.Games.Include(g => g.Venue).Include(g => g.TeamHome).Include(g => g.TeamAway).AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filterGame.Team))
-                gameQuery = gameQuery.Where(p => p.TeamHome.Name.ToLower().Contains(filterGame.Team.ToLower()) || p.TeamAway.Name.ToLower().Contains(filterGame.Team.ToLower()));
+                gameQuery = gameQuery.Where(g => g.TeamHome.Name.ToLower().Contains(filterGame.Team.ToLower()) || g.TeamAway.Name.ToLower().Contains(filterGame.Team.ToLower()));
 
             var model = gameQuery.ToList();
             return PartialView("_IndexTable", model);
@@ -161,11 +161,14 @@ namespace ASP_NET_NBA.Controllers
 
         private void FillTeams()
         {
-            var teams = new List<SelectListItem>();
+			var teams = new List<SelectListItem>();
 
-            var listItem = new SelectListItem();
+			var listItem = new SelectListItem();
+			listItem.Text = "- select -";
+			listItem.Value = "";
+			teams.Add(listItem);
 
-            foreach (var category in _dbContext.Teams)
+			foreach (var category in _dbContext.Teams)
             {
                 listItem = new SelectListItem(category.Name, category.ID.ToString());
                 teams.Add(listItem);
